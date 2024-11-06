@@ -1,10 +1,33 @@
 from app.utils.utils import send_email, return_response
 from app.models.user_model import UserModel
+from urllib import parse
 
 import http.cookies
 import bcrypt
 import json
+import time
 import re
+
+def	verify_account(request):
+	parsed_path = parse.urlparse(request.path)
+	query_params = parse.parse_qs(parsed_path.query)
+	token = query_params.get("token", [None])[0]
+
+	if token:
+		user_model = UserModel()
+		try:
+			user = user_model.get_user_by_token(token)
+		
+		except Exception as e:
+			return_response(request, 500, json.dumps({"error": "Internal server error"}))
+
+		if user:
+				user_model.active_user(token)
+				return_response(request, 200, json.dumps({"message": "user account activated"}))
+		else:
+			return_response(request, 401, json.dumps({"error": "Unhautorized", "token": token}))
+	else:
+		return_response(request, 400, json.dumps({"error": "Bad request"}))
 
 def check_session(request):
 	cookie_header = request.headers.get('Cookie')
@@ -49,11 +72,14 @@ def add_user(request):
 	except json.JSONDecodeError as e:
 		return_response(request, 400, json.dumps({"error": "register: Invalid JSON"}))
 		return
+	
+	timestamp = str(int(time.time()))
 
 	user = {
 		"username": post_data.get('username'),
 		"email": post_data.get('email'),
-		"password": post_data.get('password')
+		"password": post_data.get('password'),
+		"user_token": post_data.get('username') + timestamp
 	}
 
 	user_model = UserModel()
@@ -71,9 +97,10 @@ def add_user(request):
 		return
 
 	user["password"] = bcrypt.hashpw(user["password"].encode('utf-8'), bcrypt.gensalt(10))
+	user["user_token"] = bcrypt.hashpw(user["user_token"].encode('utf-8'), bcrypt.gensalt(10))
 
 	if user_model.create_user(user):
-		send_email(user["email"])
+		send_email(user["email"], user["user_token"])
 		return_response(request, 200, json.dumps({"message": "User created successfully"}))
 	else:
 		return_response(request, 500, json.dumps({"error": "Failed to create"}))

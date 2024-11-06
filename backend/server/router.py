@@ -42,7 +42,15 @@ class   Router:
 	def handle_request(self, request: BaseHTTPRequestHandler):
 		method = request.command
 		path = request.path
-		handler = self.routes.get(method, {}).get(path, None)
+
+		if path.startswith("/verify"):
+			handler = self.routes.get(method, {}).get("/verify", None)
+			if handler:
+				handler(request)
+				return
+		else:
+			handler = self.routes.get(method, {}).get(path, None)
+			handler = self.routes.get(method, {}).get(path, None)
 
 		if handler and path not in ["/register", "/login"]:
 			session_middleware = AuthMiddleware(handler)

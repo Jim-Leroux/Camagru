@@ -7,7 +7,9 @@ CREATE TABLE IF NOT EXISTS users (
     username VARCHAR(50) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
-	is_active TINYINT(1) DEFAULT 0,
+	is_log TINYINT(1) DEFAULT 0,
+    is_active TINYINT(1) DEFAULT 0,
+    user_token VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 

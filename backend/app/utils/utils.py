@@ -2,19 +2,21 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from dotenv import load_dotenv
 
-import http.cookies
 import smtplib
 import json
 import os
 
 load_dotenv()
 
-def send_email(user_email):
+def send_email(user_email, user_token):
 	sender_email=os.getenv("EMAIL_USER")
 	sender_password=os.getenv("EMAIL_PASSWORD")
 	recipient_email=user_email
 	subject="Confirmation : Camagru"
-	body="Welcome from Camagru ! Please confirm your account at: "
+
+	user_token = user_token.decode('utf-8')
+	validation_url =f"http://localhost:8000/verify?token={user_token}"
+	body=f"Welcome from Camagru ! Please confirm your account at: {validation_url}"
 
 	try:
 		# Création du message

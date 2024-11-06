@@ -12,6 +12,15 @@ class   UserModel:
 		finally:
 			cursor.close()
 		return users
+	
+	def get_user_by_token(self, token):
+		cursor = self.db.cursor()
+		try:
+			cursor.execute("SELECT * FROM users WHERE is_active = %s", (token,))
+			user = cursor.fetchone()
+		finally:
+			cursor.close()
+		return user
 
 	def get_user_by_id(self, id):
 		cursor = self.db.cursor()
@@ -44,8 +53,8 @@ class   UserModel:
 		cursor = self.db.cursor()
 		try:
 			cursor.execute(
-				"INSERT INTO users (username, email, password) VALUES (%s, %s, %s)",
-				(user["username"], user["email"], user["password"])
+				"INSERT INTO users (username, email, password, user_token) VALUES (%s, %s, %s, %s)",
+				(user["username"], user["email"], user["password"], user["user_token"])
 			)
 			self.db.commit()
 		finally:
@@ -68,7 +77,7 @@ class   UserModel:
 	def user_login(self, user_email):
 		cursor = self.db.cursor()
 		try:
-			cursor.execute("UPDATE users SET is_active = %s WHERE email = %s", (1, user_email))
+			cursor.execute("UPDATE users SET is_log = %s WHERE email = %s", (1, user_email))
 			self.db.commit()
 		finally:
 			cursor.close()
@@ -77,7 +86,16 @@ class   UserModel:
 	def user_logout(self, user_id):
 		cursor = self.db.cursor()
 		try:
-			cursor.execute("UPDATE users SET is_active = %s WHERE id = %s", (0, user_id))
+			cursor.execute("UPDATE users SET is_log = %s WHERE id = %s", (0, user_id))
+			self.db.commit()
+		finally:
+			cursor.close()
+		return True
+	
+	def active_user(self, token):
+		cursor = self.db.cursor()
+		try:
+			cursor.execute("UPDATE users SET is_active = 1 WHERE user_token = %s", (token,))
 			self.db.commit()
 		finally:
 			cursor.close()

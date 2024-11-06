@@ -1,4 +1,4 @@
-from app.controllers.user_controller import list_users, add_user, check_session, login, logout
+from app.controllers.user_controller import list_users, add_user, check_session, login, logout, verify_account
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from router import Router
 
@@ -8,6 +8,7 @@ router.post("/login", login)
 router.post("/logout", logout)
 router.get("/users", list_users)
 router.post("/register", add_user)
+router.get("/verify", verify_account)
 router.get("/checkSession", check_session)
 
 class RequestHandler(BaseHTTPRequestHandler):
