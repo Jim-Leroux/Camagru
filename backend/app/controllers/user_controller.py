@@ -1,4 +1,4 @@
-from app.utils.utils import send_email, return_response
+from app.utils.utils import send_email, return_response, is_valid_email, is_valid_password
 from app.models.user_model import UserModel
 from urllib import parse
 
@@ -71,6 +71,14 @@ def add_user(request):
 		post_data = json.loads(request.rfile.read(content_length))
 	except json.JSONDecodeError as e:
 		return_response(request, 400, json.dumps({"error": "register: Invalid JSON"}))
+		return
+	
+	if not is_valid_email(post_data.get('email')):
+		return_response(request, 400, json.dumps({"error": "Invalid email address"}))
+		return
+
+	if not is_valid_password(post_data.get('password')):
+		return_response(request, 400, json.dumps({"error": "Password should contains at least 8 caracters, one uppercase and one special caracter"}))
 		return
 	
 	timestamp = str(int(time.time()))

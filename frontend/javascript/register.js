@@ -22,6 +22,7 @@ export function register(container) {
             '<input id="email" type="email" name="email" placeholder="Email" required>' +
             '<input id="password" type="password" name="password" placeholder="Mot de passe" required>' +
             '<button type="submit">Sign up</button>' +
+            '<p id="error-message" style="color: red; display: none;"></p>' +
             '</form>' +
             '<p>Have an account? <a href="#login">Log in</a></p>' +
             '</div>';
@@ -49,6 +50,10 @@ export function register(container) {
                     console.log('Response:', data);
                     if (!data.error) {
                         window.location.href = '/#login';
+                    } else {
+                        const errorMessageElement = document.getElementById('error-message');
+                        errorMessageElement.textContent = data.error;
+                        errorMessageElement.style.display = 'block';
                     }
                 })
                 .catch((error) => {

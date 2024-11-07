@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 
 import smtplib
 import json
+import re
 import os
 
 load_dotenv()
@@ -51,6 +52,14 @@ def return_response(request, status_code, body, cookie=None):
 	request.end_headers()
 	request.wfile.write(body.encode('utf-8'))
 
+def is_valid_password(password):
+	pattern = r'^(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>])(?=.{8,})'
+	return bool(re.match(pattern, password))
+
+def is_valid_email(email):
+    pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+    return bool(re.match(pattern, email))
+
 # EQUIVALENT FOR SEND_EMAIL()
 # PHP has his own function mail()
 # an SMTP server is needed to use mail()
@@ -60,3 +69,7 @@ def return_response(request, status_code, body, cookie=None):
 # Super globale $_ENV
 # An associative array of variables passed via the environment method.
 # https://www.php.net/manual/en/reserved.variables.environment.php
+
+# EQUIVALENT FOR PREG_MATCH
+# preg_match — Perform a regular expression match
+# https://www.php.net/manual/en/function.preg-match.php
