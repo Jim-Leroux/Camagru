@@ -1,6 +1,8 @@
+import { resetPassword } from './resetPassword.js';
 import { register } from './register.js';
 import { login } from './login.js';
 import { home } from './home.js';
+
 
 export function router() {
 	const app = document.getElementById('app');
@@ -11,6 +13,8 @@ export function router() {
 		register(app);
 	} else if (route === '#login') {
 		login(app);
+	} else if (route === '#resetPassword') {
+		resetPassword(app);
 	} else if (route === '#home') {
 		home(app);
 	} else {

@@ -1,6 +1,6 @@
 import { reloadCSS } from './utils.js';
 
-export function login(container) {
+export function resetPassword(container) {
 	fetch('http://localhost:8000/checkSession', {
 		method: 'GET',
 		headers: {
@@ -15,21 +15,20 @@ export function login(container) {
 			window.location.href = '/#home';
 		} else {
 			console.log('Response:', data);
-			container.innerHTML = '<div id="login">' +
+			container.innerHTML = '<div id="resetPassword">' +
 				'<h1>Camagru</h1>' +
-				'<form id="loginForm" action="login" method="POST">' +
-				'<input id="email" type="email" name="email" placeholder="Email" required>' +
+				'<form id="resetPasswordForm" action="login" method="POST">' +
+                '<h5>Trouble with loggin in ?</h5>' +
+                '<p>Enter your email to reset your password</p>' +
 				'<input id="password" type="password" name="password" placeholder="Password" required>' +
-				'<button type="submit">Log in</button>' +
+				'<button type="submit">Send</button>' +
 				'<p id="error-message" style="color: red; display: none;"></p>' +
 				'</form>' +
-				'<a href="#resetPassword"><p>Forgot password ?</a>' +
-				'<p>Don\'t have an account? <a href="#register">Sign up</a></p>' +
 				'</div>';
 
 			reloadCSS();
 
-			document.getElementById('loginForm').addEventListener('submit', function(event) {
+			document.getElementById('resetPasswordForm').addEventListener('submit', function(event) {
 				event.preventDefault();
 				const formData = {
 					email: document.getElementById('email').value,

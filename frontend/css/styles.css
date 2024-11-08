@@ -24,6 +24,7 @@ html, body {
 
 /* Styles communs pour #register et #login */
 #register,
+#resetPassword,
 #login {
     background-color: #f9f9f9; /* Couleur de fond */
     padding: 20px;            /* Espacement intérieur */
@@ -38,7 +39,12 @@ html, body {
     width: 60%;
 }
 
+#resetPassword{
+    width: fit-content;
+}
+
 #register h1,
+#resetPassword h1,
 #login h1 {
     color: #333;             /* Couleur du texte */
 	font-size: 50px; /* Taille minimale 1.5rem, maximum 3rem, et dynamique entre les deux */
@@ -50,6 +56,7 @@ html, body {
 
 /* Styles communs pour les étiquettes */
 #register label,
+#resetPassword label,
 #login label {
     display: block;          /* Chaque étiquette sur une nouvelle ligne */
     margin-bottom: 8px;     /* Marge inférieure */
@@ -58,6 +65,7 @@ html, body {
 
 /* Styles communs pour les inputs */
 #register input,
+#resetPassword input,
 #login input {
     width: 100%;            /* Prendre toute la largeur du conteneur */
     padding: 10px;          /* Espacement intérieur */
@@ -69,6 +77,7 @@ html, body {
 
 /* Styles communs pour les boutons */
 #register button,
+#resetPassword button,
 #login button {
     background: linear-gradient(152deg, rgb(253, 29, 104) 25%, rgba(252,176,69,1) 90%);
     color: white;               /* Couleur du texte du bouton */
@@ -81,12 +90,14 @@ html, body {
 }
 
 #register button:hover,
+#resetPassword button:hover,
 #login button:hover {
     background: linear-gradient(152deg, rgb(253, 0, 84) 25%, rgb(244, 149, 17) 90%);
 }
 
 /* Styles pour les paragraphes */
 #register p,
+#resetPassword p,
 #login p {
     text-align: left; /* Centre le texte du paragraphe */
 	font-size: 12px;
@@ -97,6 +108,7 @@ html, body {
 
 /* Styles pour les liens dans les paragraphes */
 #register p a,
+#resetPassword p a,
 #login p a {
     font-family: "Lato", sans-serif; /* Police de caractères pour le lien */
     font-weight: 900; /* Poids de la police pour le lien */
@@ -106,6 +118,7 @@ html, body {
 }
 
 #register p a:hover,
+#resetPassword p a:hover,
 #login p a:hover {
     text-decoration: underline; /* Ajoute un soulignement au survol */
 }
