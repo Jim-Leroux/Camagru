@@ -16,7 +16,8 @@ export function register(container) {
         } else {
             console.log('Response:', data);
             container.innerHTML = '<div id="register">' +
-            '<h1>Camagru</h1>' +
+            '<h1 id="logo">Camagru</h1>' +
+            '<h2 id="slogan"><span>Connect</span> and <span>share</span> with <span>people</span> from all over the <span>world</span></h1>' +
             '<form id="registerForm" action="register" method="POST">' +
             '<input id="username" type="text" name="username" placeholder="Nom" required>' +
             '<input id="email" type="email" name="email" placeholder="Email" required>' +

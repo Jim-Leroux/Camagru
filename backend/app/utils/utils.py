@@ -15,9 +15,42 @@ def send_email(user_email, user_token):
 	recipient_email=user_email
 	subject="Confirmation : Camagru"
 
-	user_token = user_token.decode('utf-8')
-	validation_url =f"http://localhost:8000/verify?token={user_token}"
+	validation_url =f"http://localhost:9000/#accountConfirm?token={user_token}"
 	body=f"Welcome from Camagru ! Please confirm your account at: {validation_url}"
+
+	try:
+		# Création du message
+		msg = MIMEMultipart()
+		msg['From'] = sender_email
+		msg['To'] = recipient_email
+		msg['Subject'] = subject
+
+		# Attacher le corps du mail
+		msg.attach(MIMEText(body, 'plain'))
+
+		# Connexion au serveur SMTP (Gmail dans cet exemple)
+		server = smtplib.SMTP('smtp.gmail.com', 587)
+		server.starttls()  # Démarrer le chiffrement TLS
+		server.login(sender_email, sender_password)  # Authentification
+
+		# Envoi de l'email
+		text = msg.as_string()
+		server.sendmail(sender_email, recipient_email, text)
+		server.quit()  # Fermer la connexion au serveur
+
+		print("Email envoyé avec succès!")
+
+	except Exception as e:
+		print(f"Erreur lors de l'envoi de l'email: {e}")
+
+def send_password_email(user_email, user_token):
+	sender_email=os.getenv("EMAIL_USER")
+	sender_password=os.getenv("EMAIL_PASSWORD")
+	recipient_email=user_email
+	subject="New password : Camagru"
+
+	validation_url =f"http://localhost:9000/#newPassword?token={user_token}"
+	body=f"Trouble logging in ? Create your new password at: {validation_url}"
 
 	try:
 		# Création du message

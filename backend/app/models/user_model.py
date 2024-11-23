@@ -16,7 +16,7 @@ class   UserModel:
 	def get_user_by_token(self, token):
 		cursor = self.db.cursor()
 		try:
-			cursor.execute("SELECT * FROM users WHERE is_active = %s", (token,))
+			cursor.execute("SELECT * FROM users WHERE user_token = %s", (token,))
 			user = cursor.fetchone()
 		finally:
 			cursor.close()
@@ -61,18 +61,44 @@ class   UserModel:
 			cursor.close()
 		return True
 
-
 	def update_user(self, user):
 		cursor = self.db.cursor()
+		fields = []
+		values = []
+		
+		if user.get("username") is not None:
+			fields.append("username = %s")
+			values.append(user["username"])
+		if user.get("email") is not None:
+			fields.append("email = %s")
+			values.append(user["email"])
+		if user.get("password") is not None:
+			fields.append("password = %s")
+			values.append(user["password"])
+		
+		if not fields:
+			return False
+
+		values.append(user["id"])
+		query = f"UPDATE users SET {', '.join(fields)} WHERE id = %s"
+
 		try:
-			cursor.execute(
-				"INSERT INTO users WHERE id = %d VALUES(%s, %s, %s)",
-				(user["id"], user["username"], user["email"], user["password"])
-			)
+			cursor.execute(query, tuple(values))
 			self.db.commit()
 		finally:
-			cursor.closes()
+			cursor.close()
 		return True
+	
+	def update_password(self, user_id, password):
+		cursor = self.db.cursor()
+		if password is not None:
+			try:
+				cursor.execute("UPDATE users SET password = %s WHERE id = %s", (password, user_id))
+				self.db.commit()
+			finally:
+				cursor.close()
+			return True
+
 
 	def user_login(self, user_email):
 		cursor = self.db.cursor()
@@ -96,6 +122,15 @@ class   UserModel:
 		cursor = self.db.cursor()
 		try:
 			cursor.execute("UPDATE users SET is_active = 1 WHERE user_token = %s", (token,))
+			self.db.commit()
+		finally:
+			cursor.close()
+		return True
+
+	def update_token(self, id, value):
+		cursor = self.db.cursor()
+		try:
+			cursor.execute("UPDATE users SET user_token = %s WHERE id = %s", (value, id))
 			self.db.commit()
 		finally:
 			cursor.close()

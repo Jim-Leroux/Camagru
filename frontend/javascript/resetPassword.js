@@ -1,6 +1,6 @@
 import { reloadCSS } from './utils.js';
 
-export function login(container) {
+export function resetPassword(container) {
 	fetch('http://localhost:8000/checkSession', {
 		method: 'GET',
 		headers: {
@@ -12,32 +12,31 @@ export function login(container) {
 	.then(data => {
 		if (data.logged) {
 			console.log('Response:', data);
-			window.location.href = '/#gallery';
+			window.location.href = '/#home';
 		} else {
 			console.log('Response:', data);
-			container.innerHTML = '<div id="login">' +
+			container.innerHTML = '<div id="resetPassword">' +
 				'<h1 id="logo">Camagru</h1>' +
-				'<h2 id="slogan"><span>Connect</span> and <span>share</span> with <span>people</span> from all over the <span>world</span></h1>' +
-				'<form id="loginForm" action="login" method="POST">' +
+				'<form id="resetPasswordForm" action="login" method="POST">' +
+				'<div id="textPosition">' +
+                '<p id="trouble">Forgot your <span>password</span> ?</p>' +
+                '<p>enter your email to get your reset link</p>' +
+				'</div>' +
 				'<input id="email" type="email" name="email" placeholder="Email" required>' +
-				'<input id="password" type="password" name="password" placeholder="Password" required>' +
-				'<button type="submit">Log in</button>' +
+				'<button type="submit">Send</button>' +
 				'<p id="error-message" style="color: red; display: none;"></p>' +
 				'</form>' +
-				'<a href="#resetPassword"><p>Forgot password ?</a>' +
-				'<p>Don\'t have an account? <a href="#register">Sign up</a></p>' +
 				'</div>';
 
 			reloadCSS();
 
-			document.getElementById('loginForm').addEventListener('submit', function(event) {
+			document.getElementById('resetPasswordForm').addEventListener('submit', function(event) {
 				event.preventDefault();
 				const formData = {
-					email: document.getElementById('email').value,
-					password: document.getElementById('password').value
+					email: document.getElementById('email').value
 				};
 
-				fetch('http://localhost:8000/login', {
+				fetch('http://localhost:8000/resetPassword', {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json'
@@ -49,7 +48,7 @@ export function login(container) {
 				.then(data => {
 					console.log('Response:', data);
 					if (!data.error) {
-						window.location.href = '/#home';
+						window.location.href = '/#login';
 					} else {
 						const errorMessageElement = document.getElementById("error-message");
 						errorMessageElement.textContent = data.error;
