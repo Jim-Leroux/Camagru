@@ -6,9 +6,8 @@ export async function gallery(container) {
 
 	const usersPosts = await getAllPosts()
 
-	console.log(usersPosts);
-
 	const posts = usersPosts.posts;
+	console.log(posts)
 	const postsPerPage = 9;
 	let currentPage = 1;
 
@@ -19,13 +18,13 @@ export async function gallery(container) {
 						<div id="logo-block">
 						<h1 id="nav-logo">Camagru</h1>
 						</div>
-						<div id="link-block">
-						<li><a href="#home"><i class="fa-solid fa-house"></i></a></li>
-						<li><a href="#gallery"><i class="fa-solid fa-magnifying-glass"></i></a></li>
-						<li><a href="#post"><i class="fa-regular fa-square-plus"></i></a></li>
-						<li><a href="#profil"><i class="fa-solid fa-user"></i></a></li>
-						<li><a id="logoutButton" href=""><i class="fa-solid fa-right-to-bracket"></i></a></li>
-						</div>
+							<div id="link-block">
+								<li><a href="#home"><i class="fa-solid fa-house"></i></a></li>
+								<li><a href="#gallery"><i class="fa-solid fa-magnifying-glass"></i></a></li>
+								<li><a href="#post"><i class="fa-regular fa-square-plus"></i></a></li>
+								<li><a href="#profil"><i class="fa-solid fa-user"></i></a></li>
+								<li><a href="#logout"><i class="fa-solid fa-right-to-bracket"></i></a></li>
+							</div>
 					</ul>
 				</nav>
 				<div id="gallery-container">
@@ -51,6 +50,27 @@ export async function gallery(container) {
 				</footer>
 			</div>`
 
+	if (userSession.logged == false) {
+		const navElement = document.getElementById('link-block');
+		navElement.innerHTML = `
+		<li><a href="#login"><i class="fa-solid fa-house"></i></a></li>
+		<li><a href="#gallery"><i class="fa-solid fa-magnifying-glass"></i></a></li>
+		<li><a href="#login"><i class="fa-regular fa-square-plus"></i></a></li>
+		<li><a href="#login"><i class="fa-solid fa-user"></i></a></li>
+		<li><a href="#login"><i class="fa-solid fa-right-to-bracket"></i></a></li>
+		`
+		const footerNavElement = document.getElementById('footer-link-block');
+		footerNavElement.innerHTML = `
+		<li><a href="#login"><i class="fa-solid fa-house"></i></a></li>
+		<li><a href="#gallery"><i class="fa-solid fa-magnifying-glass"></i></a></li>
+		<li><a href="#login"><i class="fa-regular fa-square-plus"></i></a></li>
+		<li><a href="#login"><i class="fa-solid fa-user"></i></a></li>
+		<li><a href="#login"><i class="fa-solid fa-right-to-bracket"></i></a></li>
+		`
+	}
+
+	const homeContainer = document.getElementById('home');
+	const galleryContainer = document.getElementById('gallery-container');
 	const postsContainer = document.getElementById('gallery-posts');
 	const prevButton = document.getElementById('prev-page');
 	const nextButton = document.getElementById('next-page');
@@ -66,7 +86,7 @@ export async function gallery(container) {
 			postElement.className = 'post';
 			postElement.innerHTML = `
 			<div id="gallery-post">
-				<img src="${post.post_path}" alt="${post.description}" />
+				<img id ="imgsrc" src="${post.post_path}" alt="${post.description}" />
 			</div>`;
 			postsContainer.appendChild(postElement);
 		});
@@ -74,15 +94,58 @@ export async function gallery(container) {
 		prevButton.disabled = page === 1;
 		nextButton.disabled = end >= posts.length;
 
+		const userPosts = document.querySelectorAll('.post');
+
+		userPosts.forEach((post) => {
+			post.addEventListener('click', () => {
+				if (userSession.logged == false)
+					window.location.href = '/#login';
+				else {
+					const imageSource = post.getElementsByTagName('div')[0].getElementsByTagName('img')[0].src;
+					const focusedElement = document.createElement('div')
+					focusedElement.setAttribute("id", "focused-section");
+
+					focusedElement.innerHTML = `
+					<i id="exit-focus-icon" class="fa-solid fa-xmark"></i>
+					<div id="focused-post">
+						<div id="focused-post-img">
+							<img src="${imageSource}" alt="post img" />
+						</div>
+						<div id="focused-post-section">
+							<div id="comment-display-section">
+
+							</div>
+							<div id="react-section">
+								<p><strong>127</strong> likes</p>
+								<div>
+									<i id="post-like-icon" class="fa-solid fa-heart"></i>
+									<form>
+										<label for="comment-form"></label>
+										<input type="text" id="post-comment-form" name"comment-form" placeholder="Add comment ...">
+										<i type="submit" value="submit" id="post-send-comment" class="fa-solid fa-paper-plane"></i>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+					`;
+					galleryContainer.appendChild(focusedElement);
+					homeContainer.setAttribute("style", "overflow: hidden;")
+
+					const exitButton = document.getElementById("exit-focus-icon");
+					const focusedSection = document.getElementById("focused-section");
+
+
+					exitButton.addEventListener('click', () => {
+						focusedSection.remove();
+						homeContainer.setAttribute("style", "overflow: visible;")
+					})
+				}
+			})
+		})
 	}
 
-	// const post = document.getElementById('gallery-post');
-
-
-	// post.addEventListener('click', () => {
-	// 	if (userSession.logged == false)
-	// 		window.location.href = '/#login';
-	// })
+	renderPage(currentPage);
 
 	prevButton.addEventListener('click', () => {
 		if (currentPage > 1) {
@@ -97,6 +160,4 @@ export async function gallery(container) {
 			renderPage(currentPage)
 		}
 	});
-
-	renderPage(currentPage);
 }
