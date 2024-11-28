@@ -1,5 +1,5 @@
 from app.models.post_model import PostModel
-from app.utils.utils import return_response
+from app.utils.utils import utils
 
 import json
 
@@ -11,8 +11,8 @@ def get_all_posts(request):
             post['created_at'] = post['created_at'].strftime('%Y-%m-%d %H:%M:%S')
         response = {"posts": posts}
     except Exception as error:
-        return_response(request, 500, json.dumps({"error": str(error)}))
+        utils.return_response(request, 500, json.dumps({"error": str(error)}))
         return
 
-    return_response(request, 200, json.dumps(response))
+    utils.return_response(request, 200, json.dumps(response))
     return

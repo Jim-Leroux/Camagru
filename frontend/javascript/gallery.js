@@ -1,4 +1,4 @@
-import { reloadCSS, checkSession, getAllPosts} from './utils.js'
+import { reloadCSS, checkSession, getAllPosts, sendLike} from './utils.js'
 
 export async function gallery(container) {
 
@@ -7,7 +7,6 @@ export async function gallery(container) {
 	const usersPosts = await getAllPosts()
 
 	const posts = usersPosts.posts;
-	console.log(posts)
 	const postsPerPage = 9;
 	let currentPage = 1;
 
@@ -23,7 +22,7 @@ export async function gallery(container) {
 								<li><a href="#gallery"><i class="fa-solid fa-magnifying-glass"></i></a></li>
 								<li><a href="#post"><i class="fa-regular fa-square-plus"></i></a></li>
 								<li><a href="#profil"><i class="fa-solid fa-user"></i></a></li>
-								<li><a href="#logout"><i class="fa-solid fa-right-to-bracket"></i></a></li>
+								<li><a href="#login"><i id="logoutButton" class="fa-solid fa-right-to-bracket"></i></a></li>
 							</div>
 					</ul>
 				</nav>
@@ -43,7 +42,7 @@ export async function gallery(container) {
 							<li><a href="#gallery"><i class="fa-solid fa-magnifying-glass"></i></a></li>
 							<li><a href="#post"><i class="fa-regular fa-square-plus"></i></a></li>
 							<li><a href="#profil"><i class="fa-solid fa-user"></i></a></li>
-							<li><a href="#logout"><i class="fa-solid fa-right-to-bracket"></i></a></li>
+							<li><a href=""><i class="fa-solid fa-right-to-bracket"></i></a></li>
 							</div>
 						</ul>
 					</nav>
@@ -95,38 +94,37 @@ export async function gallery(container) {
 		nextButton.disabled = end >= posts.length;
 
 		const userPosts = document.querySelectorAll('.post');
-
-		userPosts.forEach((post) => {
-			post.addEventListener('click', () => {
+		let index = 0;
+		for (let i = 0; userPosts[i]; i++) {
+			userPosts[i].addEventListener('click', () => {
 				if (userSession.logged == false)
 					window.location.href = '/#login';
 				else {
-					const imageSource = post.getElementsByTagName('div')[0].getElementsByTagName('img')[0].src;
 					const focusedElement = document.createElement('div')
 					focusedElement.setAttribute("id", "focused-section");
-
+					index = postsToShow[i].id;
 					focusedElement.innerHTML = `
 					<i id="exit-focus-icon" class="fa-solid fa-xmark"></i>
 					<div id="focused-post">
-						<div id="focused-post-img">
-							<img src="${imageSource}" alt="post img" />
-						</div>
-						<div id="focused-post-section">
-							<div id="comment-display-section">
+					<div id="focused-post-img">
+					<img src="${postsToShow[i].post_path}" alt="${postsToShow[i].description}" />
+					</div>
+					<div id="focused-post-section">
+					<div id="comment-display-section">
 
-							</div>
-							<div id="react-section">
-								<p><strong>127</strong> likes</p>
-								<div>
-									<i id="post-like-icon" class="fa-solid fa-heart"></i>
-									<form>
-										<label for="comment-form"></label>
-										<input type="text" id="post-comment-form" name"comment-form" placeholder="Add comment ...">
-										<i type="submit" value="submit" id="post-send-comment" class="fa-solid fa-paper-plane"></i>
-									</form>
-								</div>
-							</div>
-						</div>
+					</div>
+					<div id="react-section">
+					<p><strong>127</strong> likes</p>
+					<div id="like-comment-section">
+					<i id="post-like-icon" class="fa-solid fa-heart"></i>
+					<form id="post-comment-form" action="post-comment" method="POST">
+					<label for="comment-form"></label>
+					<input type="text" id="comment-input-form" name"comment-input-form" placeholder="Add a comment...">
+					<p id="send-comment" type="submit" value="Submit"><strong>Post</strong></p>
+					</form>
+					</div>
+					</div>
+					</div>
 					</div>
 					`;
 					galleryContainer.appendChild(focusedElement);
@@ -134,15 +132,21 @@ export async function gallery(container) {
 
 					const exitButton = document.getElementById("exit-focus-icon");
 					const focusedSection = document.getElementById("focused-section");
+					const sendLikeIcon = document.getElementById("post-like-icon");
 
 
 					exitButton.addEventListener('click', () => {
 						focusedSection.remove();
 						homeContainer.setAttribute("style", "overflow: visible;")
 					})
+
+					sendLikeIcon.addEventListener('click', () => {
+						sendLike(index);
+						renderPage(currentPage);
+					})
 				}
 			})
-		})
+		}
 	}
 
 	renderPage(currentPage);
@@ -150,14 +154,35 @@ export async function gallery(container) {
 	prevButton.addEventListener('click', () => {
 		if (currentPage > 1) {
 			currentPage--;
-			renderPage(currentPage)
+			renderPage(currentPage);
 		}
 	});
 
 	nextButton.addEventListener('click', () => {
 		if (currentPage * postsPerPage < posts.length) {
 			currentPage++;
-			renderPage(currentPage)
+			renderPage(currentPage);
 		}
 	});
+
+	document.getElementById('logoutButton').addEventListener('click', function(event) {
+		event.preventDefault();
+		fetch('http://localhost:8000/logout', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			credentials: 'include',
+		})
+		.then(response => response.json())
+		.then(data => {
+			console.log(data);
+			if (!data.error) {
+				window.location.href = '/#login';
+			}
+		})
+		.catch((error) => {
+			console.error('Error:', error);
+		})
+	})
 }

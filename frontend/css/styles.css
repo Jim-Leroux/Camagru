@@ -385,6 +385,10 @@ footer {
 	font-size: 30px;
 }
 
+#exit-focus-icon:hover {
+	cursor: pointer;
+}
+
 #focused-post {
 	width: 900px;
 	height: 450px;
@@ -410,7 +414,7 @@ footer {
 
 #comment-display-section {
 	height: 75%;
-	background-color: #661d1d;
+	border-bottom: 1px solid rgb(59, 59, 59);
 }
 
 #react-section {
@@ -419,31 +423,52 @@ footer {
 	flex-direction: column;
 }
 
+#react-section p {
+	font-family: "Lato", sans-serif;
+	font-weight: 500;
+	margin-left: 10px;
+}
+
+#like-comment-section {
+	display: flex;
+	align-items: center;
+}
+
 #post-like-icon {
 	padding: 0 20px;
 	font-size: 20px;
 	color: #adadad;
+	transition: 0.3s;
 }
 
-#post-like-icon:focus {
+#post-like-icon:hover {
 	color: red;
+	cursor: pointer;
 }
-
 
 #post-comment-form {
+	width: 80%;
+	display: flex;
+}
+
+#comment-input-form {
+	width: 100%;
 	border: none;
 	font-size: 15px;
 	background-color: rgb(255, 255, 255);
 }
 
-#post-comment-form:focus {
+#comment-input-form:focus {
 	outline: none;
 }
 
-#post-send-comment {
-	padding: 0 20px;
-	font-size: 20px;
-	color: #000000;
+#send-comment {
+	transition: 0.3s;
+}
+
+#send-comment:hover {
+	cursor: pointer;
+	color: #ff0059;
 }
 
 @media (max-width: 768px) {

@@ -6,9 +6,6 @@ import { register } from './register.js';
 import { gallery } from './gallery.js';
 import { login } from './login.js';
 
-import { home } from './newHome.js';
-
-
 export function router() {
     const app = document.getElementById('app');
     const route = window.location.hash;

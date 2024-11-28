@@ -49,7 +49,7 @@ export function login(container) {
 				.then(data => {
 					console.log('Response:', data);
 					if (!data.error) {
-						window.location.href = '/#home';
+						window.location.href = '/#gallery';
 					} else {
 						const errorMessageElement = document.getElementById("error-message");
 						errorMessageElement.textContent = data.error;

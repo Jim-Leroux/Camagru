@@ -10,4 +10,6 @@ EXPOSE 8000
 
 ENV PYTHONPATH=/backend
 
-CMD ["python", "server/server.py"]
+CMD ["watchmedo", "auto-restart", "--patterns=*.py", "--recursive", "--", "python", "server/server.py"]
+
+# CMD ["python", "server/server.py"]
