@@ -2,31 +2,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;900&family=Leckerli+One&display=swap');
 
 html, body {
-	height: 100%; /* Assure que le body prend toute la hauteur de la fenêtre */
-	width: 100%;
-	margin: 0; /* Supprime les marges par défaut */
+    height: 100%; /* Assure que le body prend toute la hauteur de la fenêtre */
+    width: 100%;
+    margin: 0; /* Supprime les marges par défaut */
 
 }
 
 #app {
-	height: 100%;
-	width: 100%;
-	display: flex; /* Utilise Flexbox pour centrer */
-	justify-content: center; /* Centre horizontalement */
-	align-items: center; /* Centre verticalement */
+    height: 100%;
+    width: 100%;
+    display: flex; /* Utilise Flexbox pour centrer */
+    justify-content: center; /* Centre horizontalement */
+    align-items: center; /* Centre verticalement */
 }
 
 #spa {
-	color: initial; /* Remplacez par la couleur souhaitée */
-	text-decoration: none; /* Supprime le soulignement */
+    color: initial; /* Remplacez par la couleur souhaitée */
+    text-decoration: none; /* Supprime le soulignement */
 }
 
 #spa :visited {
-	color: initial; /* Couleur des liens déjà visités */
+    color: initial; /* Couleur des liens déjà visités */
 }
 
 #spa :active {
-	color: initial; /* Couleur des liens pendant le clic */
+    color: initial; /* Couleur des liens pendant le clic */
 }
 
 /* Styles communs pour #register et #login */
@@ -35,36 +35,36 @@ html, body {
 #resetPassword,
 #newPassword,
 #login {
-	background-color: #f9f9f9; /* Couleur de fond */
-	padding: 20px;			/* Espacement intérieur */
-	border-radius: 8px;	  /* Coins arrondis */
-	box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
-				rgba(0, 0, 0, 0.12) 0px -12px 30px,
-				rgba(0, 0, 0, 0.12) 0px 4px 6px,
-				rgba(0, 0, 0, 0.17) 0px 12px 13px,
-				rgba(0, 0, 0, 0.09) 0px -3px 5px; /* Ombre autour */
-	max-width: 400px;		/* Largeur maximale */
-	margin: auto;			/* Centrer le conteneur */
-	width: 272px;
+    background-color: #f9f9f9; /* Couleur de fond */
+    padding: 20px;            /* Espacement intérieur */
+    border-radius: 8px;      /* Coins arrondis */
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+                rgba(0, 0, 0, 0.12) 0px -12px 30px,
+                rgba(0, 0, 0, 0.12) 0px 4px 6px,
+                rgba(0, 0, 0, 0.17) 0px 12px 13px,
+                rgba(0, 0, 0, 0.09) 0px -3px 5px; /* Ombre autour */
+    max-width: 400px;        /* Largeur maximale */
+    margin: auto;            /* Centrer le conteneur */
+    width: 272px;
 }
 
 #resetPassword{
-	width: fit-content;
+    width: fit-content;
 }
 
 #logo {
-	color: #333;			 /* Couleur du texte */
+    color: #333;             /* Couleur du texte */
 	font-size: 50px; /* Taille minimale 1.5rem, maximum 3rem, et dynamique entre les deux */
-	margin: 25px !important;
-	text-align: center;	  /* Centre le texte */
-	font-family: "Leckerli One", cursive; /* Utiliser la police importée */
-	font-weight: 700;
+    margin: 25px !important;
+    text-align: center;      /* Centre le texte */
+    font-family: "Leckerli One", cursive; /* Utiliser la police importée */
+    font-weight: 700;
 }
-
+ 
 #textPosition {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 
@@ -75,9 +75,9 @@ html, body {
 #resetPassword label,
 #newPassword label,
 #login label {
-	display: block;		  /* Chaque étiquette sur une nouvelle ligne */
-	margin-bottom: 8px;	 /* Marge inférieure */
-	color: #555;			 /* Couleur du texte */
+    display: block;          /* Chaque étiquette sur une nouvelle ligne */
+    margin-bottom: 8px;     /* Marge inférieure */
+    color: #555;             /* Couleur du texte */
 }
 
 /* Styles communs pour les inputs */
@@ -85,12 +85,12 @@ html, body {
 #resetPassword input,
 #newPassword input,
 #login input {
-	width: 100%;			/* Prendre toute la largeur du conteneur */
-	padding: 10px;		  /* Espacement intérieur */
-	margin-bottom: 20px;	/* Marge inférieure */
-	border: 1px solid #ccc; /* Bordure */
-	border-radius: 4px;	 /* Coins arrondis */
-	box-sizing: border-box;  /* Inclure padding et border dans la largeur */
+    width: 100%;            /* Prendre toute la largeur du conteneur */
+    padding: 10px;          /* Espacement intérieur */
+    margin-bottom: 20px;    /* Marge inférieure */
+    border: 1px solid #ccc; /* Bordure */
+    border-radius: 4px;     /* Coins arrondis */
+    box-sizing: border-box;  /* Inclure padding et border dans la largeur */
 }
 
 /* Styles communs pour les boutons */
@@ -98,20 +98,20 @@ html, body {
 #resetPassword button,
 #newPassword button,
 #login button {
-	background: linear-gradient(152deg, rgb(253, 29, 104) 25%, rgba(252,176,69,1) 90%);
-	color: white;			   /* Couleur du texte du bouton */
-	padding: 10px 15px;		/* Espacement intérieur */
-	border: none;			  /* Pas de bordure */
-	border-radius: 4px;		/* Coins arrondis */
-	cursor: pointer;			/* Curseur pointeur */
-	width: 100%;
+    background: linear-gradient(152deg, rgb(253, 29, 104) 25%, rgba(252,176,69,1) 90%);
+    color: white;               /* Couleur du texte du bouton */
+    padding: 10px 15px;        /* Espacement intérieur */
+    border: none;              /* Pas de bordure */
+    border-radius: 4px;        /* Coins arrondis */
+    cursor: pointer;            /* Curseur pointeur */
+    width: 100%;
 }
 
 #register button:hover,
 #resetPassword button:hover,
 #newPassword button:hover,
 #login button:hover {
-	background: linear-gradient(152deg, rgb(253, 0, 84) 25%, rgb(244, 149, 17) 90%);
+    background: linear-gradient(152deg, rgb(253, 0, 84) 25%, rgb(244, 149, 17) 90%);
 }
 
 /* Styles pour les paragraphes */
@@ -120,7 +120,7 @@ html, body {
 #resetPassword p,
 #newPassword p,
 #login p {
-	text-align: left; /* Centre le texte du paragraphe */
+    text-align: left; /* Centre le texte du paragraphe */
 	font-size: 12px;
 	font-family: "Lato", sans-serif;
 	font-weight: 900;
@@ -133,11 +133,11 @@ html, body {
 #resetPassword p a,
 #newPassword p a,
 #login p a {
-	font-family: "Lato", sans-serif; /* Police de caractères pour le lien */
-	font-weight: 900; /* Poids de la police pour le lien */
-	font-style: normal; /* Style normal pour le lien */
-	color: #ff0059; /* Couleur par défaut pour le lien, vous pouvez changer si nécessaire */
-	text-decoration: none; /* Supprime le soulignement du lien */
+    font-family: "Lato", sans-serif; /* Police de caractères pour le lien */
+    font-weight: 900; /* Poids de la police pour le lien */
+    font-style: normal; /* Style normal pour le lien */
+    color: #ff0059; /* Couleur par défaut pour le lien, vous pouvez changer si nécessaire */
+    text-decoration: none; /* Supprime le soulignement du lien */
 }
 
 #register p a:hover,
@@ -145,365 +145,228 @@ html, body {
 #resetPassword p a:hover,
 #newPassword p a:hover,
 #login p a:hover {
-	text-decoration: underline; /* Ajoute un soulignement au survol */
+    text-decoration: underline; /* Ajoute un soulignement au survol */
 }
 
 #accountConfirm {
-	margin: 50px;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+    margin: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 #accountConfirm i {
-	font-size: 50px;
-	color: rgb(76, 207, 122);
-	margin: 20px;
+    font-size: 50px;
+    color: rgb(76, 207, 122);
+    margin: 20px;
 }
 
 #slogan {
-	font-size: 20px;
-	text-align: center;
-	font-family: "Lato", sans-serif; /* Police de caractères pour le lien */
-	font-weight: 900; /* Poids de la police pour le lien */
-	font-style: normal; /* Style normal pour le lien */
-	color: #242223; /* Couleur par défaut pour le lien, vous pouvez changer si nécessaire */
+    font-size: 20px;
+    text-align: center;
+    font-family: "Lato", sans-serif; /* Police de caractères pour le lien */
+    font-weight: 900; /* Poids de la police pour le lien */
+    font-style: normal; /* Style normal pour le lien */
+    color: #242223; /* Couleur par défaut pour le lien, vous pouvez changer si nécessaire */
 }
 
 span {
-	color:#ff0059
+    color:#ff0059
 }
 
 #trouble {
-	font-size: 17px !important;
+    font-size: 17px !important;
 }
 
 #home {
-	width: 100%;
-	height: 100%;
+    width: 100%;
+    height: 100%;    
 }
 
 #nav-logo {
-	color: #333;			 /* Couleur du texte */
+    color: #333;             /* Couleur du texte */
 	font-size: 30px; /* Taille minimale 1.5rem, maximum 3rem, et dynamique entre les deux */
-	text-align: center;	  /* Centre le texte */
-	font-family: "Leckerli One", cursive; /* Utiliser la police importée */
-	font-weight: 700;
-	margin: 0;
-	padding: 0;
+    text-align: center;      /* Centre le texte */
+    font-family: "Leckerli One", cursive; /* Utiliser la police importée */
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
 }
 
 /* Positionne la navbar en haut de la page */
 #navbar {
-	top: 0;
-	left: 0;
-	width: 100%;
-	display: flex;
-	align-items: center;
-	background-color: #ffffff; /* Couleur de fond de la navbar */
-	color: white;
-	z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: #ffffff; /* Couleur de fond de la navbar */
+    color: white;
+    z-index: 1000;
 }
 
 /* Style pour les liens */
 #nav-links,
 #footer-nav-links {
-	width: 100%;
-	list-style: none;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	margin: 0;
-	padding: 10px;
+    width: 100%;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0;
+    padding: 10px;
 }
 
 #nav-links li,
 #footer-nav-links li {
-	margin-left: 20px;
-	margin-right: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 #nav-links a,
 #footer-nav-links a {
-	text-decoration: none;
-	color: rgb(0, 0, 0);
-	font-size: 1rem;
-	transition: color 0.3s ease;
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    font-size: 1rem;
+    transition: color 0.3s ease;
 }
 
 #nav-links a:hover,
 #footer-nav-links a:hover {
-	color: #ff0059;
+    color: #ff0059; /* Couleur au survol */
 }
 
 #logo-block {
-	margin: 0;
-	padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 #link-block,
 #footer-link-block {
-	display: flex;
+    display: flex;
 }
 
 #link-block,
 #footer-link-block i {
-	font-size: 20px;
+    font-size: 20px;
 }
 
 footer {
-	margin: 0;
-	padding: 0 !important;
-	position: fixed;
-	display: flex;
-	justify-content: center;
-	bottom: 0;
-	left: 0;
-	width: 100%;
-	background-color: #f1f1f1;
-	padding: 10px;
-	text-align: center;
+    margin: 0;
+    padding: 0 !important;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    bottom: 0;
+    left: 0;
+    width: 100%; /* S'assure qu'il couvre toute la largeur */
+    background-color: #f1f1f1; /* Exemple de couleur */
+    padding: 10px;
+    text-align: center;
 }
 
 #footer-navbar {
-	display: none;
+    display: none;
 }
 
 #posts-container {
-	display: flex;
-	justify-content: center;
-	align-items: flex-start;
-	height: calc(100vh - 160px);
-	overflow-y: auto;
-	margin: 0 auto;
-	padding: 10px;
-	background-color: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    overflow-y: auto; /* Scroll vertical */
+    margin: 0 auto;
+    padding: 10px;
 }
 
 #posts {
-	width: 100%;
-	max-width: 600px;
-	background-color: #3d3535;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-	border-radius: 8px;
-	overflow: hidden;
+    width: 100%; /* Ou une largeur fixe comme 600px */
+    max-width: 600px; /* Ajuste selon le design souhaité */
+    overflow: hidden;
 }
 
 #post {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	padding: 5px 0px;
-	background-color: rgb(181, 178, 178);
-	border-bottom: 1px;
-	border-color: #ba0d0d;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0px;
 }
 
 #post img {
-	width: 500px;
+    width: 500px;
 }
 
-#post p {
-	width: 500px;
+#post-description-section {
+    width: 480px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: "Lato", sans-serif;
+    font-weight: 600;
 }
 
-#gallery-container {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+#description {
+    width: 500px;
+    justify-content: space-between;
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
 }
 
-#gallery-posts {
-	width: 900px;
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-	flex-wrap: wrap;
-
+#post-like-comment {
+    display: flex;
 }
 
-#gallery-post {
-	width: 250px;
-	height: 250px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	border-radius: 25px;
+#post-like-comment i {
+    padding: 0 10px;
+    font-size: 20px;
 }
 
-#gallery-post img {
-	width: 225px;
-	transition: 0.3s;
+#heart-icon {
+    color: #e9e9e9;
+    cursor: pointer;
 }
 
-#gallery-post img:hover {
-	width: 250px;
+#heart-icon.clicked {
+    color: red;
 }
 
-#pagination-controls {
-	width: 700px;
-	display: flex;
-	justify-content: space-between;
+
+#post-bottom {
+    border-bottom: solid 1px rgb(94, 94, 94);
 }
 
-#pagination-controls p {
-	width: 50px;
-	font-family: "Lato", sans-serif;
-	font-weight: 900;
-	font-style: normal;
-	color: #252525;
-	transition: 0.3s;
-}
+@media (max-width: 820px) {
+    #nav-logo {
+        font-size: 50px;
+    }
 
-#pagination-controls p:hover {
-	width: 50px;
-	color: #ff0059;
-	cursor: pointer;
-}
+    #navbar {
+        flex-direction: column; /* Change la direction en verticale */
+    }
 
-#focused-section {
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	position: absolute;
-	background-color: #000000e4;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
+    #nav-links {
+        flex-direction: column;
+        
+    }
 
-#exit-focus-icon {
-	top: 0;
-	right: 0;
-	margin: 20px;
-	position: absolute;
-	color: white;
-	font-size: 30px;
-}
+    #link-block {
+        width: 100%;
+        display: none;
+        justify-content: space-evenly;
+    }
 
-#exit-focus-icon:hover {
-	cursor: pointer;
-}
+    #footer-navbar {
+        display: flex;
+        width: 100%;
+    }
 
-#focused-post {
-	width: 900px;
-	height: 450px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
+    #footer-link-block {
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+    }
 
-#focused-post-img {
-	width: 450px;
-	height: 450px;
-}
-
-#focused-post-img img {
-	width: 450px;
-}
-
-#focused-post-section {
-	width: 450px;
-	height: 450px;
-	background-color: rgb(255, 255, 255);
-}
-
-#comment-display-section {
-	height: 75%;
-	border-bottom: 1px solid rgb(59, 59, 59);
-}
-
-#react-section {
-	height: 25%;
-	display: flex;
-	flex-direction: column;
-}
-
-#react-section p {
-	font-family: "Lato", sans-serif;
-	font-weight: 500;
-	margin-left: 10px;
-}
-
-#like-comment-section {
-	display: flex;
-	align-items: center;
-}
-
-#post-like-icon {
-	padding: 0 20px;
-	font-size: 20px;
-	color: #adadad;
-	transition: 0.3s;
-}
-
-#post-like-icon:hover {
-	color: red;
-	cursor: pointer;
-}
-
-#post-comment-form {
-	width: 80%;
-	display: flex;
-}
-
-#comment-input-form {
-	width: 100%;
-	border: none;
-	font-size: 15px;
-	background-color: rgb(255, 255, 255);
-}
-
-#comment-input-form:focus {
-	outline: none;
-}
-
-#send-comment {
-	transition: 0.3s;
-}
-
-#send-comment:hover {
-	cursor: pointer;
-	color: #ff0059;
-}
-
-@media (max-width: 768px) {
-	#nav-logo { font-size: 50px; }
-
-	#navbar { flex-direction: column; }
-
-	#nav-links {
-		flex-direction: column;
-		width: auto;
-	}
-
-	#link-block {
-		width: 100%;
-		display: none;
-		justify-content: space-evenly;
-	}
-
-	#footer-navbar {
-		display: flex;
-		width: 100%;
-	}
-
-	#footer-link-block {
-		width: 100%;
-		display: flex;
-		justify-content: space-evenly;
-	}
-
-	#footer-link-block i { font-size: 20px; }
-
-	#gallery-posts { width: 320px; }
-
-	#pagination-controls {
-		margin-bottom: 50px;
-		width: 270px;
-	}
+    #footer-link-block i {
+        font-size: 20px;
+    }
 }
