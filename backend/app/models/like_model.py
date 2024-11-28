@@ -14,10 +14,10 @@ class	LikeModel:
 		return likes
 
 	def get_one_like(self, post_id):
-		cursor = self.db.cursor(dictionary=True)
+		cursor = self.db.cursor()
 		try:
-			cursor.execute("SELECT * FROM likes WHERE id = %s", (post_id,))
-			like = cursor.fetchone()
+			cursor.execute("SELECT * FROM likes WHERE post_id = %s", (post_id,))
+			like = cursor.fetchall()
 		finally:
 			cursor.close()
 		return like
@@ -36,7 +36,7 @@ class	LikeModel:
 	def remove_like(self, like_id):
 		cursor = self.db.cursor()
 		try:
-			cursor.execute("DELETE likes WHERE like_id = %s", (like_id))
+			cursor.execute("DELETE FROM likes WHERE id = %s", (like_id,))
 			self.db.commit()
 		finally:
 			cursor.close()

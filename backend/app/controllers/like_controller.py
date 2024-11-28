@@ -35,12 +35,15 @@ class	likeCtrl:
 		like_model = LikeModel()
 		likes = like_model.get_one_like(post_data["post_id"])
 
+		print("COUCOU")
+
 		liked = False
+
 
 		for like in likes:
 			if like[1] == int(user_id):
 				liked = True
-				like_model.remove_like(like["id"])
+				like_model.remove_like(like[0])
 				utils.return_response(request, 201, json.dumps({"message": "Post disliked"}))
 				return
 
