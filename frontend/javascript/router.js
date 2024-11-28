@@ -3,9 +3,8 @@ import { accountConfirm } from './accountConfirm.js'
 import { resetPassword } from './resetPassword.js';
 import { newPassword } from './newPassword.js';
 import { register } from './register.js';
+import { gallery } from './gallery.js';
 import { login } from './login.js';
-import { home } from './home.js';
-
 
 export function router() {
     const app = document.getElementById('app');
@@ -19,7 +18,9 @@ export function router() {
         newPassword(app);
     } else if (route === '#passwordConfirm') {
         passwordConfirm(app);
-    } else if (route === '#register') {
+    } else if (route === '#gallery') {
+        gallery(app);
+	} else if (route === '#register') {
         register(app);
     } else if (route === '#login') {
         login(app);

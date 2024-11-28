@@ -1,4 +1,4 @@
-from app.utils.utils import return_response
+from app.utils.utils import utils
 
 from http.server import BaseHTTPRequestHandler
 from middleware import AuthMiddleware
@@ -52,11 +52,11 @@ class   Router:
 			handler = self.routes.get(method, {}).get(path, None)
 			handler = self.routes.get(method, {}).get(path, None)
 
-		if handler and path not in ["/register", "/login", "/resetPassword", "/newPassword"]:
+		if handler and path not in ["/register", "/login", "/resetPassword", "/newPassword", "/posts"]:
 			session_middleware = AuthMiddleware(handler)
 			auth_status = session_middleware(request)
 			if auth_status is False:
-				return_response(request, 401, json.dumps({
+				utils.return_response(request, 401, json.dumps({
 					'logged': False,
 					'message': 'router: Unauthorized'
 				}))
@@ -65,7 +65,7 @@ class   Router:
 		elif handler:
 			handler(request)
 		else:
-			return_response(request, 404, json.dumps({"error": "Route not found"}))
+			utils.return_response(request, 404, json.dumps({"error": "Route not found"}))
 
 # PHP EQUIVALENT FOR BaseHTTPRequestHandler
 # Super globale $_SERVER

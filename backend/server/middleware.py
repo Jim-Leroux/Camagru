@@ -1,4 +1,4 @@
-from app.utils.utils import return_response
+from app.utils.utils import utils
 from app.models.user_model import UserModel
 
 import http.cookies
@@ -20,7 +20,7 @@ class AuthMiddleware:
 			if not user_id or not user_model.get_user_by_id(user_id):
 				return False
 		except Exception as e:
-			return_response(request, 500, json.dumps({"error": "Internal Server Error"}))
+			utils.return_response(request, 500, json.dumps({"error": "Internal Server Error"}))
 			return
 
 		return True
