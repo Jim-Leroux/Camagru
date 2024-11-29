@@ -1,6 +1,6 @@
 import { reloadCSS, checkSession, getAllPosts, sendLike, getAllLikes} from './utils.js'
 
-export async function gallery(container) {
+export async function gallery(container, callback) {
 
 	const userSession = await checkSession()
 
@@ -155,8 +155,10 @@ export async function gallery(container) {
 
 					sendLikeIcon.addEventListener('click', () => {
 						sendLike(index);
-						gallery(container);
-						renderPage(currentPage);
+						gallery(container, () => {
+							const userPosts = document.querySelectorAll('.post');
+							userPosts[i].click();
+						});
 					})
 				}
 			})
@@ -164,6 +166,10 @@ export async function gallery(container) {
 	}
 
 	renderPage(currentPage);
+
+	if (callback && typeof callback === 'function') {
+		callback();
+	}
 
 	prevButton.addEventListener('click', () => {
 		if (currentPage > 1) {
