@@ -1,4 +1,4 @@
-import { reloadCSS, checkSession, getAllPosts, sendLike} from './utils.js'
+import { reloadCSS, checkSession, getAllPosts, sendLike, getAllLikes} from './utils.js'
 
 export async function gallery(container) {
 
@@ -6,7 +6,10 @@ export async function gallery(container) {
 
 	const usersPosts = await getAllPosts()
 
+	const usersLikes = await getAllLikes()
+
 	const posts = usersPosts.posts;
+
 	const postsPerPage = 9;
 	let currentPage = 1;
 
@@ -114,7 +117,7 @@ export async function gallery(container) {
 
 					</div>
 					<div id="react-section">
-					<p><strong>127</strong> likes</p>
+					<p><strong>${postsToShow[i].likes.length}</strong> likes</p>
 					<div id="like-comment-section">
 					<i id="post-like-icon" class="fa-solid fa-heart"></i>
 					<form id="post-comment-form" action="post-comment" method="POST">
@@ -134,6 +137,16 @@ export async function gallery(container) {
 					const focusedSection = document.getElementById("focused-section");
 					const sendLikeIcon = document.getElementById("post-like-icon");
 
+					console.log(postsToShow[i])
+
+					console.log(postsToShow[i].likes)
+
+
+					for (let like = 0; postsToShow[i].likes[like]; like++) {
+						if (postsToShow[i].likes[like].user_id == document.cookie.split('=')[1]) {
+							sendLikeIcon.style.color = "red";
+						}
+					}
 
 					exitButton.addEventListener('click', () => {
 						focusedSection.remove();
@@ -142,6 +155,7 @@ export async function gallery(container) {
 
 					sendLikeIcon.addEventListener('click', () => {
 						sendLike(index);
+						gallery(container);
 						renderPage(currentPage);
 					})
 				}
