@@ -1,4 +1,4 @@
-import { reloadCSS, checkSession, getAllPosts, sendLike, getAllLikes} from './utils.js'
+import { reloadCSS, checkSession, getAllPosts, getAllUsers, sendLike, sendComment} from './utils.js'
 
 export async function gallery(container, callback) {
 
@@ -6,7 +6,9 @@ export async function gallery(container, callback) {
 
 	const usersPosts = await getAllPosts()
 
-	const usersLikes = await getAllLikes()
+	const usersList = await getAllUsers()
+
+	console.log(usersList)
 
 	const posts = usersPosts.posts;
 
@@ -109,25 +111,25 @@ export async function gallery(container, callback) {
 					focusedElement.innerHTML = `
 					<i id="exit-focus-icon" class="fa-solid fa-xmark"></i>
 					<div id="focused-post">
-					<div id="focused-post-img">
-					<img src="${postsToShow[i].post_path}" alt="${postsToShow[i].description}" />
-					</div>
-					<div id="focused-post-section">
-					<div id="comment-display-section">
+						<div id="focused-post-img">
+							<img src="${postsToShow[i].post_path}" alt="${postsToShow[i].description}" />
+						</div>
+						<div id="focused-post-section">
+							<div id="comment-display-section">
 
-					</div>
-					<div id="react-section">
-					<p><strong>${postsToShow[i].likes.length}</strong> likes</p>
-					<div id="like-comment-section">
-					<i id="post-like-icon" class="fa-solid fa-heart"></i>
-					<form id="post-comment-form" action="post-comment" method="POST">
-					<label for="comment-form"></label>
-					<input type="text" id="comment-input-form" name"comment-input-form" placeholder="Add a comment...">
-					<p id="send-comment" type="submit" value="Submit"><strong>Post</strong></p>
-					</form>
-					</div>
-					</div>
-					</div>
+							</div>
+							<div id="react-section">
+								<p><strong>${postsToShow[i].likes.length}</strong> likes</p>
+								<div id="like-comment-section">
+									<i id="post-like-icon" class="fa-solid fa-heart"></i>
+									<form id="post-comment-form" action="post-comment" method="POST">
+										<label for="comment-input-form"></label>
+										<input type="text" id="comment-input-form" name="comment-input-form" placeholder="Add a comment..." required>
+										<p id="send-comment"><strong>Post</strong></p>
+									</form>
+								</div>
+							</div>
+						</div>
 					</div>
 					`;
 					galleryContainer.appendChild(focusedElement);
@@ -136,16 +138,23 @@ export async function gallery(container, callback) {
 					const exitButton = document.getElementById("exit-focus-icon");
 					const focusedSection = document.getElementById("focused-section");
 					const sendLikeIcon = document.getElementById("post-like-icon");
-
-					console.log(postsToShow[i])
-
-					console.log(postsToShow[i].likes)
-
+					const commentDisplay = document.getElementById("comment-display-section");
+					const sendCommentButton = document.getElementById("send-comment");
 
 					for (let like = 0; postsToShow[i].likes[like]; like++) {
 						if (postsToShow[i].likes[like].user_id == document.cookie.split('=')[1]) {
 							sendLikeIcon.style.color = "red";
 						}
+					}
+
+
+					for (let c = 0; postsToShow[i].comments[c]; c++) {
+						const userComment = document.createElement('p');
+						userComment.setAttribute("id", "userComment")
+						userComment.innerHTML = `
+						<strong>${usersList[postsToShow[i].comments[c].user_id -1].username}:</strong> ${postsToShow[i].comments[c].comment}
+						`;
+						commentDisplay.appendChild(userComment);
 					}
 
 					exitButton.addEventListener('click', () => {
@@ -160,6 +169,26 @@ export async function gallery(container, callback) {
 							userPosts[i].click();
 						});
 					})
+
+					const form = document.getElementById('post-comment-form');
+					const commentInput = document.getElementById('comment-input-form');
+
+					sendCommentButton.addEventListener('click', () => {
+						if (form.checkValidity()) {
+							const commentValue = commentInput.value;
+							const post_id = postsToShow[i].id;
+							sendComment(post_id, commentValue);
+
+							gallery(container, () => {
+								const userPosts = document.querySelectorAll('.post');
+								userPosts[i].click();
+							});
+						} else {
+							form.reportValidity();
+						}
+					});
+
+
 				}
 			})
 		}

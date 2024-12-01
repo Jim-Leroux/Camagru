@@ -228,8 +228,16 @@ class	userCtrl:
 			return
 
 	def list_users(request):
-		users = user_model.get_all_users()
-		utils.return_response(request, 200, json.dumps(users))
+		try:
+			user_model = UserModel()
+			users = user_model.get_all_users()
+
+			for user in users:
+				user['created_at'] = user['created_at'].strftime('%Y-%m-%d %H:%M:%S')
+
+			utils.return_response(request, 200, json.dumps(users))
+		except Exception as error:
+			utils.return_response(request, 500, json.dumps(str(error)))
 		return
 
 

@@ -3,46 +3,46 @@ CREATE DATABASE IF NOT EXISTS mydb;
 USE mydb;
 
 CREATE TABLE IF NOT EXISTS users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(50) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL UNIQUE,
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	username VARCHAR(50) NOT NULL UNIQUE,
+	password VARCHAR(255) NOT NULL,
+	email VARCHAR(255) NOT NULL UNIQUE,
 	is_log TINYINT(1) DEFAULT 0,
-    is_active TINYINT(1) DEFAULT 0,
-    user_token VARCHAR(255) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+	is_active TINYINT(1) DEFAULT 0,
+	user_token VARCHAR(255) NOT NULL,
+	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE IF NOT EXISTS posts (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL,
-    post_path VARCHAR(255) NOT NULL,
-    description TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	user_id INT NOT NULL,
+	post_path VARCHAR(255) NOT NULL,
+	description TEXT,
+	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS comments (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL,
-    post_id INT,
-    comment TEXT NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-    FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	user_id INT NOT NULL,
+	post_id INT,
+	comment TEXT NOT NULL,
+	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+	FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS likes (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL,
-    post_id INT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-    FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	user_id INT NOT NULL,
+	post_id INT,
+	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+	FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE
 );
 
 INSERT INTO users (username, password, email, user_token, is_active)
-VALUES 
+VALUES
 ('Groot', 'hashed_password6', 'groot@avengers.com', 'token6', 1),
 ('Hulk', 'hashed_password5', 'hulk@avengers.com', 'token5', 1),
 ('BlackWidow', 'hashed_password3', 'widow@avengers.com', 'token3', 1),

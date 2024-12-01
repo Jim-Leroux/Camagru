@@ -36,25 +36,9 @@ export async function getAllPosts() {
 	}
 }
 
-export async function getAllLikes() {
+export async function getAllUsers() {
 	try {
-		const response = await fetch('http://localhost:8000/likes', {
-			method: 'GET',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			credentials: 'include',
-		})
-		return response.json()
-	}
-	catch (error) {
-		console.log(error)
-	}
-}
-
-export async function getAllComments() {
-	try {
-		const response = await fetch('http://localhost:8000/comments', {
+		const response = await fetch('http://localhost:8000/users', {
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json',
@@ -77,6 +61,24 @@ export async function sendLike(post_id) {
 			},
 			credentials: 'include',
 			body:JSON.stringify({"post_id": post_id}),
+		})
+		return response.json()
+	}
+	catch (error) {
+		console.log(error);
+	}
+
+}
+
+export async function sendComment(post_id, comment) {
+	try {
+		const response = await fetch('http://localhost:8000/sendComment', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			credentials: 'include',
+			body:JSON.stringify({"post_id": post_id, "comment": comment}),
 		})
 		return response.json()
 	}
