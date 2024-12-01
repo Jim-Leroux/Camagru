@@ -505,10 +505,33 @@ footer {
 
 	#footer-link-block i { font-size: 20px; }
 
-	#gallery-posts { width: 320px; }
+	#gallery-posts { width: 320px; overflow: auto; }
 
 	#pagination-controls {
 		margin-bottom: 50px;
 		width: 270px;
 	}
+
+	#focused-section {
+		overflow: auto;
+	}
+
+	#focused-post {
+		flex-direction: column;
+	}
+
+	#focused-post-section {
+		width: 320px;
+	}
+
+	#focused-post-img {
+		width: 320px;
+		height: 320px;
+	}
+
+	#focused-post-img  img{
+		width: 320px;
+	}
+
+
 }

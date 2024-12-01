@@ -8,8 +8,6 @@ export async function gallery(container, callback) {
 
 	const usersList = await getAllUsers()
 
-	console.log(usersList)
-
 	const posts = usersPosts.posts;
 
 	const postsPerPage = 9;
