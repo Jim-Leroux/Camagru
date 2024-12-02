@@ -5,6 +5,7 @@ import { newPassword } from './newPassword.js';
 import { register } from './register.js';
 import { gallery } from './gallery.js';
 import { login } from './login.js';
+import { home } from './home.js';
 
 export function router() {
     const app = document.getElementById('app');
