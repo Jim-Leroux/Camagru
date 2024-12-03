@@ -261,7 +261,7 @@ footer {
 	bottom: 0;
 	left: 0;
 	width: 100%;
-	background-color: #f1f1f1;
+	background-color: #ffffff;
 	padding: 10px;
 	text-align: center;
 }
@@ -278,15 +278,12 @@ footer {
 	overflow-y: auto;
 	margin: 0 auto;
 	padding: 10px;
-	background-color: #f9f9f9;
+	background-color: #ffffff;
 }
 
 #posts {
 	width: 100%;
 	max-width: 600px;
-	background-color: #3d3535;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-	border-radius: 8px;
 	overflow: hidden;
 }
 
@@ -295,9 +292,10 @@ footer {
 	flex-direction: column;
 	align-items: center;
 	padding: 5px 0px;
-	background-color: rgb(181, 178, 178);
-	border-bottom: 1px;
-	border-color: #ba0d0d;
+}
+
+#post-bottom {
+	border-bottom: 1px solid black;
 }
 
 #post img {
@@ -439,14 +437,14 @@ footer {
 	align-items: center;
 }
 
-#post-like-icon {
+#post-like-icon, #focused-like-icon {
 	padding: 0 20px;
 	font-size: 20px;
 	color: #adadad;
 	transition: 0.3s;
 }
 
-#post-like-icon:hover {
+#post-like-icon:hover, #focused-like-icon:hover {
 	color: red;
 	cursor: pointer;
 }
