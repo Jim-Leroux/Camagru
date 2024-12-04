@@ -8,10 +8,7 @@ export async function home(container, callback, scrollValue) {
 
 	const usersPosts = await getAllPosts();
 
-	const usersList = await getAllUsers()
-
-	console.log(usersList)
-
+	const usersList = await getAllUsers();
 
 	container.innerHTML =
 		`<div id="home">
@@ -25,7 +22,7 @@ export async function home(container, callback, scrollValue) {
 					<li><a href="#gallery"><i class="fa-solid fa-magnifying-glass"></i></a></li>
 					<li><a href="#post"><i class="fa-regular fa-square-plus"></i></a></li>
 					<li><a href="#profil"><i class="fa-solid fa-user"></i></a></li>
-					<li><a id="logoutButton" href=""><i class="fa-solid fa-right-to-bracket"></i></a></li>
+					<li><a href="#login"><i id="logoutButton" class="fa-solid fa-right-to-bracket"></i></a></li>
 					</div>
 				</ul>
 			</nav>
@@ -40,12 +37,16 @@ export async function home(container, callback, scrollValue) {
 						<li><a href="#gallery"><i class="fa-solid fa-magnifying-glass"></i></a></li>
 						<li><a href="#post"><i class="fa-regular fa-square-plus"></i></a></li>
 						<li><a href="#profil"><i class="fa-solid fa-user"></i></a></li>
-						<li><a href="#logout"><i class="fa-solid fa-right-to-bracket"></i></a></li>
+						<li><a href="#login"><i id="footerLogoutButton" class="fa-solid fa-right-to-bracket"></i></a></li>
 						</div>
 					</ul>
 				</nav>
 			</footer>
 		</div>`;
+
+	const app = document.getElementById('app');
+	console.log("home :", app);
+	app.style.alignItems = "center";
 
 	const postsContainer = document.getElementById('posts');
 
@@ -189,9 +190,52 @@ export async function home(container, callback, scrollValue) {
 					});
 
 		})
-
 		postsContainer.appendChild(postElement);
 	}
+
+	document.getElementById('logoutButton').addEventListener('click', function(event) {
+		event.preventDefault();
+		fetch('http://localhost:8000/logout', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			credentials: 'include',
+		})
+		.then(response => response.json())
+		.then(data => {
+			console.log(data);
+			if (!data.error) {
+				app.style.alignItems = "center";
+				window.location.href = '/#login';
+			}
+		})
+		.catch((error) => {
+			console.error('Error:', error);
+		})
+	})
+
+	document.getElementById('footerLogoutButton').addEventListener('click', function(event) {
+		event.preventDefault();
+		fetch('http://localhost:8000/logout', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			credentials: 'include',
+		})
+		.then(response => response.json())
+		.then(data => {
+			console.log(data);
+			if (!data.error) {
+				window.location.href = '/#login';
+			}
+		})
+		.catch((error) => {
+			console.error('Error:', error);
+		})
+	})
+
 
 	if (callback && typeof callback === 'function') {
 		callback(scrollValue);

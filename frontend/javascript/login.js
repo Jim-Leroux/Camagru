@@ -12,12 +12,12 @@ export function login(container) {
 	.then(data => {
 		if (data.logged) {
 			console.log('Response:', data);
-			window.location.href = '/#gallery';
+			window.location.href = '/#home';
 		} else {
 			console.log('Response:', data);
-			container.innerHTML = '<div id="login">' +
+			container.innerHTML = '<div id="login" class="form-container">' +
 				'<h1 id="logo">Camagru</h1>' +
-				'<h2 id="slogan"><span>Connect</span> and <span>share</span> with <span>people</span> from all over the <span>world</span></h1>' +
+				'<h2 id="slogan"><span class="slogan">Connect</span> and <span class="slogan">share</span> with <span class="slogan">people</span> from all over the <span class="slogan">world</span></h1>' +
 				'<form id="loginForm" action="login" method="POST">' +
 				'<input id="email" type="email" name="email" placeholder="Email" required>' +
 				'<input id="password" type="password" name="password" placeholder="Password" required>' +
@@ -28,7 +28,9 @@ export function login(container) {
 				'<p>Don\'t have an account? <a href="#register">Sign up</a></p>' +
 				'</div>';
 
-			reloadCSS();
+			const app = document.getElementById('app');
+			console.log("login :", app);
+			app.style.alignItems = "center";
 
 			document.getElementById('loginForm').addEventListener('submit', function(event) {
 				event.preventDefault();
@@ -49,7 +51,7 @@ export function login(container) {
 				.then(data => {
 					console.log('Response:', data);
 					if (!data.error) {
-						window.location.href = '/#gallery';
+						window.location.href = '/#home';
 					} else {
 						const errorMessageElement = document.getElementById("error-message");
 						errorMessageElement.textContent = data.error;

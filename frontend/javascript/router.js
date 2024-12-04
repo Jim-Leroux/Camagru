@@ -8,29 +8,29 @@ import { login } from './login.js';
 import { home } from './home.js';
 
 export function router() {
-    const app = document.getElementById('app');
-    const route = window.location.hash;
+	const app = document.getElementById('app');
+	const route = window.location.hash;
 
-    console.log(route);
+	console.log(route);
 
-    if (route.startsWith('#accountConfirm')) {
-        accountConfirm(app);
-    } else if (route.startsWith('#newPassword')) {
-        newPassword(app);
-    } else if (route === '#passwordConfirm') {
-        passwordConfirm(app);
-    } else if (route === '#gallery') {
-        gallery(app);
+	if (route.startsWith('#accountConfirm')) {
+		accountConfirm(app);
+	} else if (route.startsWith('#newPassword')) {
+		newPassword(app);
+	} else if (route === '#passwordConfirm') {
+		passwordConfirm(app);
+	} else if (route === '#gallery') {
+		gallery(app);
 	} else if (route === '#register') {
-        register(app);
-    } else if (route === '#login') {
-        login(app);
-    } else if (route === '#resetPassword') {
-        resetPassword(app);
-    } else if (route === '#home') {
-        home(app);
-    } else {
-        app.innerHTML = '<h1>404 Not Found</h1>';
-    }
+		register(app);
+	} else if (route === '#login') {
+		login(app);
+	} else if (route === '#resetPassword') {
+		resetPassword(app);
+	} else if (route === '#home') {
+		home(app);
+	} else {
+		app.innerHTML = '<h1>404 Not Found</h1>';
+	}
 }
 

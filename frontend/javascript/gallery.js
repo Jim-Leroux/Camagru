@@ -45,7 +45,7 @@ export async function gallery(container, callback) {
 							<li><a href="#gallery"><i class="fa-solid fa-magnifying-glass"></i></a></li>
 							<li><a href="#post"><i class="fa-regular fa-square-plus"></i></a></li>
 							<li><a href="#profil"><i class="fa-solid fa-user"></i></a></li>
-							<li><a href=""><i class="fa-solid fa-right-to-bracket"></i></a></li>
+							<li><a href="#login"><i id="footerLogoutButton" class="fa-solid fa-right-to-bracket"></i></a></li>
 							</div>
 						</ul>
 					</nav>
@@ -213,6 +213,27 @@ export async function gallery(container, callback) {
 	});
 
 	document.getElementById('logoutButton').addEventListener('click', function(event) {
+		event.preventDefault();
+		fetch('http://localhost:8000/logout', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			credentials: 'include',
+		})
+		.then(response => response.json())
+		.then(data => {
+			console.log(data);
+			if (!data.error) {
+				window.location.href = '/#login';
+			}
+		})
+		.catch((error) => {
+			console.error('Error:', error);
+		})
+	})
+
+	document.getElementById('footerLogoutButton').addEventListener('click', function(event) {
 		event.preventDefault();
 		fetch('http://localhost:8000/logout', {
 			method: 'POST',
