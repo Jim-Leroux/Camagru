@@ -13,7 +13,7 @@ export async function home(container, callback, scrollValue) {
 	container.innerHTML =
 		`<div id="home">
 			<nav id="navbar">
-				<ul id="nav-links">
+				<ul id="nav-links" class="nav-links">
 					<div id="logo-block">
 					<h1 id="nav-logo">Camagru</h1>
 					</div>
@@ -31,7 +31,7 @@ export async function home(container, callback, scrollValue) {
 			</div>
 			<footer>
 				<nav id="footer-navbar">
-					<ul id="footer-nav-links">
+					<ul id="footer-nav-links" class="nav-links">
 						<div id="footer-link-block">
 						<li><a href="#home"><i class="fa-solid fa-house"></i></a></li>
 						<li><a href="#gallery"><i class="fa-solid fa-magnifying-glass"></i></a></li>

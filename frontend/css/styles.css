@@ -1,4 +1,5 @@
 /* [ Imports ] */
+
 @import url('https://fonts.googleapis.com/css2?family=Leckerli+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;900&display=swap');
 
@@ -53,6 +54,8 @@ a:hover {
 /* [ Common Style for Forms ] */
 
 .form-container {
+	min-height: 300px;
+	max-height: 450px;
 	width: 300px;
 	padding: 20px;
 	border-radius: 8px;
@@ -121,7 +124,34 @@ a:hover {
 	color: #242223;
 }
 
-/* #nav-logo {} */
+/* [ Account confirmation ] */
+
+#accountConfirm {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+#accountConfirm i {
+	font-size: 50px;
+	color: rgb(76, 207, 122);
+	margin: 20px;
+}
+
+/* Reset & New Password */
+
+#resetPassword h1, #newPassword h1 {
+	margin: 50px 0;
+}
+
+#resetPassword input {
+	margin-top: 10px;
+}
+
+#newPassword p {
+	margin: 10px 0;
+}
 
 /* [ Navbar ] */
 
@@ -132,43 +162,58 @@ a:hover {
 	align-items: center;
 	background-color: #ffffff;
 	position: absolute;
-	z-index: 1000;
 }
 
-#nav-links {
+.nav-links {
+	height: 100%;
 	width: 100%;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+	align-items: center;
 	list-style: none;
 }
 
-#nav-links a {
+.nav-links a {
 	color: rgb(0, 0, 0);
 	font-size: 1rem;
 	transition: color 0.3s ease;
 }
 
-#nav-links a:hover {
+.nav-links a:hover {
 	color: var(--hover-color);
+}
+
+#link-block, #footer-link-block {
+	width: 300px;
+	display: flex;
+	justify-content: space-between;
 }
 
 #link-block {
 	display: none;
 }
 
-/* [ img ] */
+#footer-link-block {
+	padding: 10px;
+	position: absolute;
+	bottom: 0;
+}
+
+/* [ Home img ] */
 img {
 	width: 50px;
 }
 
 #home {
+	height: 100%;
 	width: 100%;
 }
 
-/* [ Posts ] */
+/* [ Home Posts ] */
 
 #posts-container {
+	margin-top: 100px;
 	height: 250px;
 	overflow: auto;
 }

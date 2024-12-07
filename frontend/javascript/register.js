@@ -28,7 +28,9 @@ export function register(container) {
 			'<p>Have an account? <a href="#login">Log in</a></p>' +
 			'</div>';
 
-			reloadCSS();
+			const app = document.getElementById('app');
+			console.log("register :", app);
+			app.style.alignItems = "center";
 
 			document.getElementById('registerForm').addEventListener('submit', function(event) {
 				event.preventDefault();
