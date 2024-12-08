@@ -139,7 +139,7 @@ a:hover {
 	margin: 20px;
 }
 
-/* Reset & New Password */
+/* [ Reset & New Password ] */
 
 #resetPassword h1, #newPassword h1 {
 	margin: 50px 0;
@@ -158,6 +158,7 @@ a:hover {
 #navbar {
 	top: 0;
 	width: 100%;
+	padding-bottom: 10px;
 	display: flex;
 	align-items: center;
 	background-color: #ffffff;
@@ -184,8 +185,18 @@ a:hover {
 	color: var(--hover-color);
 }
 
+footer {
+	height: 50px;
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	z-index: 1000;
+	background-color: white;
+}
+
 #link-block, #footer-link-block {
-	width: 300px;
+	width: 100%;
+	max-width: 400px;
 	display: flex;
 	justify-content: space-between;
 }
@@ -195,15 +206,11 @@ a:hover {
 }
 
 #footer-link-block {
-	padding: 10px;
-	position: absolute;
-	bottom: 0;
+	padding: 15px 10px;
+
 }
 
 /* [ Home img ] */
-img {
-	width: 50px;
-}
 
 #home {
 	height: 100%;
@@ -213,7 +220,160 @@ img {
 /* [ Home Posts ] */
 
 #posts-container {
-	margin-top: 100px;
-	height: 250px;
+	margin-top: 78px;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	/* overflow: auto; */
+}
+
+.post {
+	width: 100%;
+	max-width: 430px;
+}
+
+#post {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+}
+
+#post img {
+	width: 100%;
+}
+
+#post-description-section {
+	width: 100%;
+	padding: 10px;
+}
+
+#description {
+	margin: 10px 0;
+}
+
+#post-like-comment i {
+	font-size: 20px;
+	color: #a8a8a8;
+	cursor: pointer;
+	transition: ease-in-out 0.3s;
+}
+
+#post-like-icon:hover {
+	color: rgb(255, 89, 89);
+}
+
+#post-comment-icon {
+	margin-left: 20px;
+}
+
+#post-comment-icon:hover {
+	color: rgb(88, 174, 245);
+}
+
+/* [ Focused Posts ] */
+
+#focused-section {
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	height: 100%;
+	position: absolute;
+	/* background-color: #000000e4; */
+	background-color: white;
 	overflow: auto;
+}
+
+#exit-focus-icon {
+	top: 0;
+	right: 0;
+	margin: 20px;
+	position: absolute;
+	color: white;
+	font-size: 30px;
+}
+
+#focused-post {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+#focused-post-img img {
+	width: 100%;
+	max-width: 390px;
+
+}
+
+#focused-post-section {
+	background-color: rgb(255, 255, 255);
+	max-width: 390px;
+	/* Width have to be adjusted */
+}
+
+#comment-display-section {
+	height: 150px;
+	padding: 10px;
+	overflow: auto;
+	background-color: red;
+}
+
+#react-section {
+	width: 100%;
+	padding: 10px;
+	bottom: 0;
+	position: absolute;
+	max-width: 430px;
+	border-top: 1px solid rgb(63, 63, 63);
+}
+
+#userComment {
+	padding: 5px 0;
+}
+
+#like-comment-section {
+	margin-top: 10px;
+	display: flex;
+}
+
+#like-comment-section i {
+	font-size: 20px;
+}
+
+#post-comment-form {
+	width: 90%;
+	padding-left: 5%;
+	display: flex;
+}
+
+#comment-input-form {
+	width: 100%;
+	border: none;
+	font-size: 15px;
+	background-color: rgb(255, 255, 255);
+}
+
+#comment-input-form:focus {
+	outline: none;
+}
+
+@media (min-height: 739px) {
+	#comment-display-section {
+		height: 290px;
+	}
+}
+
+@media (min-height: 843px) {
+	#comment-display-section {
+		height: 370px;
+	}
+}
+
+@media (min-height: 914px) {
+	#comment-display-section {
+		height: 410px;
+	}
 }

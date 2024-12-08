@@ -29,7 +29,7 @@ export async function home(container, callback, scrollValue) {
 			<div id="posts-container">
 				<div id="posts" class="scrollable"></div>
 			</div>
-			<footer>
+			<footer id="footer">
 				<nav id="footer-navbar">
 					<ul id="footer-nav-links" class="nav-links">
 						<div id="footer-link-block">
@@ -47,7 +47,8 @@ export async function home(container, callback, scrollValue) {
 	const app = document.getElementById('app');
 	console.log("home :", app);
 	app.style.alignItems = "center";
-
+	const footer = document.getElementById('footer');
+	console.log(footer)
 	const postsContainer = document.getElementById('posts');
 
 	for (const post of usersPosts.posts) {
@@ -69,13 +70,10 @@ export async function home(container, callback, scrollValue) {
 						<p>${totalLikes} ${textLike}</p>
 					</div>
 					<div id="post-like-comment">
+						<p id="description"><strong>${usersList[post.user_id - 1].username}</strong>: ${post.description}</p>
 						<i id="post-like-icon" class="heart-icon fa-solid fa-heart"></i>
 						<i id="post-comment-icon" class="comment fa-regular fa-comment" comment-post-id="${post.id}"></i>
 					</div>
-				</div>
-				<div id="post-bottom">
-					<p id="description"><strong>${usersList[post.user_id - 1].username}</strong>: ${post.description}</p>
-				</div>
 			</div>`;
 
 		for (const like of post.likes) {
@@ -111,7 +109,6 @@ export async function home(container, callback, scrollValue) {
 						</div>
 						<div id="focused-post-section">
 							<div id="comment-display-section">
-
 							</div>
 							<div id="react-section">
 								<p><strong>${post.likes.length}</strong> likes</p>
@@ -128,6 +125,8 @@ export async function home(container, callback, scrollValue) {
 					</div>
 					`;
 					postsContainer.appendChild(focusedElement);
+					app.style.overflow = "hidden";
+					footer.style.display = "None";
 
 					const sendLikeIcon = document.getElementById("focused-like-icon");
 					const exitButton = document.getElementById("exit-focus-icon");
@@ -137,7 +136,7 @@ export async function home(container, callback, scrollValue) {
 
 					for (let like = 0; post.likes[like]; like++) {
 						if (post.likes[like].user_id == document.cookie.split('=')[1]) {
-							sendLikeIcon.style.color = "red";
+							sendLikeIcon.style.color = "rgb(255, 89, 89)";
 							break;
 						}
 					}
@@ -152,6 +151,8 @@ export async function home(container, callback, scrollValue) {
 					}
 
 					exitButton.addEventListener('click', () => {
+						app.style.overflow = "auto";
+						footer.style.display = "Block";
 						focusedSection.remove();
 					})
 

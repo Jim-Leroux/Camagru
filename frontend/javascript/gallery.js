@@ -141,7 +141,7 @@ export async function gallery(container, callback) {
 
 					for (let like = 0; postsToShow[i].likes[like]; like++) {
 						if (postsToShow[i].likes[like].user_id == document.cookie.split('=')[1]) {
-							sendLikeIcon.style.color = "red";
+							sendLikeIcon.style.color = "rgb(255, 89, 89)";
 						}
 					}
 
