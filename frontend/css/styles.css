@@ -24,7 +24,6 @@
 * {
 	margin: 0;
 	padding: 0;
-	box-sizing: border-box;
 }
 
 html, body {
@@ -225,7 +224,7 @@ footer {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	/* overflow: auto; */
+	overflow: auto;
 }
 
 .post {
@@ -280,10 +279,9 @@ footer {
 	bottom: 0;
 	left: 0;
 	height: 100%;
+	width: 100%;
 	position: absolute;
-	/* background-color: #000000e4; */
 	background-color: white;
-	overflow: auto;
 }
 
 #exit-focus-icon {
@@ -291,7 +289,7 @@ footer {
 	right: 0;
 	margin: 20px;
 	position: absolute;
-	color: white;
+	color: rgb(0, 0, 0);
 	font-size: 30px;
 }
 
@@ -303,31 +301,28 @@ footer {
 }
 
 #focused-post-img img {
-	width: 100%;
-	max-width: 390px;
-
+	margin-top: 30px;
+	width: 190px
 }
 
 #focused-post-section {
 	background-color: rgb(255, 255, 255);
-	max-width: 390px;
-	/* Width have to be adjusted */
 }
 
 #comment-display-section {
-	height: 150px;
+	height: 10vh;
 	padding: 10px;
 	overflow: auto;
-	background-color: red;
+	margin-top: 15px;
+	border-top: 1px solid rgb(63, 63, 63);
 }
 
 #react-section {
 	width: 100%;
 	padding: 10px;
 	bottom: 0;
+	max-width: 448px;
 	position: absolute;
-	max-width: 430px;
-	border-top: 1px solid rgb(63, 63, 63);
 }
 
 #userComment {
@@ -353,27 +348,59 @@ footer {
 	width: 100%;
 	border: none;
 	font-size: 15px;
-	background-color: rgb(255, 255, 255);
 }
 
 #comment-input-form:focus {
 	outline: none;
 }
 
-@media (min-height: 739px) {
+@media (min-height: 394px) { #comment-display-section { height: 20vh; } }
+
+@media (min-height: 450px) { #comment-display-section { height: 30vh; } }
+
+@media (min-height: 500px) { #comment-display-section { height: 35vh; } }
+
+@media (min-height: 600px) { #comment-display-section { height: 45vh; } }
+
+@media (min-height: 700px) { #comment-display-section { height: 53vh; } }
+
+@media (min-height: 800px) { #comment-display-section {	height: 58vh; } }
+
+@media (min-height: 900px) { #comment-display-section { height: 60vh; } }
+
+@media (min-width: 767px) and (min-height: 500px) {
+	#focused-section {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: #000000e4;
+	}
+
+	#exit-focus-icon {
+		color: rgb(255, 255, 255);
+	}
+	
+	#focused-post {
+		height: 384px;
+		flex-direction: row;
+		align-items: unset;
+		background-color: white;
+	}
+
+	#focused-post-img img {
+		margin-top: unset;
+		width: 384px;
+	}
+
 	#comment-display-section {
 		height: 290px;
+		margin-top: unset;
+		border-top: unset;
 	}
-}
 
-@media (min-height: 843px) {
-	#comment-display-section {
-		height: 370px;
-	}
-}
-
-@media (min-height: 914px) {
-	#comment-display-section {
-		height: 410px;
+	#react-section {
+		width: 448px;
+		bottom: auto;
+		left: auto;
 	}
 }
