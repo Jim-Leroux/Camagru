@@ -15,18 +15,26 @@ export function register(container) {
 			window.location.href = '/#home';
 		} else {
 			console.log('Response:', data);
-			container.innerHTML = '<div id="register" class="form-container">' +
-			'<h1 id="logo">Camagru</h1>' +
-			'<h2 id="slogan"><span class="slogan">Connect</span> and <span class="slogan">share</span> with <span class="slogan">people</span> from all over the <span class="slogan">world</span></h1>' +
-			'<form id="registerForm" action="register" method="POST">' +
-			'<input id="username" type="text" name="username" placeholder="Nom" required>' +
-			'<input id="email" type="email" name="email" placeholder="Email" required>' +
-			'<input id="password" type="password" name="password" placeholder="Mot de passe" required>' +
-			'<button type="submit">Sign up</button>' +
-			'<p id="error-message" style="color: red; display: none;"></p>' +
-			'</form>' +
-			'<p>Have an account? <a href="#login">Log in</a></p>' +
-			'</div>';
+			container.innerHTML = `
+			<div class="main-form-container">
+				<div id="register" class="form-container">
+					<h1 id="logo">Camagru</h1>
+					<h2 id="slogan"><span class="slogan">Connect</span> and <span class="slogan">share</span> with <span class="slogan">people</span> from all over the <span class="slogan">world</span></h1>
+					<form id="registerForm" action="register" method="POST">
+						<input id="username" type="text" name="username" placeholder="Name" required>
+						<input id="email" type="email" name="email" placeholder="Email" required>
+						<input id="password" type="password" name="password" placeholder="Password" required>
+						<button type="submit">Sign up</button>
+					</form>
+					<div>
+						<p id="error-message" style="color: red; display: none;"></p>
+						<p>Have an account? <a href="#login">Log in</a></p>
+					</div>
+				</div>
+			</div> `
+
+
+			reloadCSS();
 
 			const app = document.getElementById('app');
 			console.log("register :", app);

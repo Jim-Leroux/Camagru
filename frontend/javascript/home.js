@@ -12,43 +12,26 @@ export async function home(container, callback, scrollValue) {
 
 	container.innerHTML =
 		`<div id="home">
+			<div id="logo-block">
+				<h1 id="nav-logo">Camagru</h1>
+			</div>
 			<nav id="navbar">
 				<ul id="nav-links" class="nav-links">
-					<div id="logo-block">
-					<h1 id="nav-logo">Camagru</h1>
-					</div>
-					<div id="link-block">
 					<li><a href="#home"><i class="fa-solid fa-house"></i></a></li>
 					<li><a href="#gallery"><i class="fa-solid fa-magnifying-glass"></i></a></li>
 					<li><a href="#post"><i class="fa-regular fa-square-plus"></i></a></li>
 					<li><a href="#profil"><i class="fa-solid fa-user"></i></a></li>
 					<li><a href="#login"><i id="logoutButton" class="fa-solid fa-right-to-bracket"></i></a></li>
-					</div>
 				</ul>
 			</nav>
 			<div id="posts-container">
 				<div id="posts" class="scrollable"></div>
 			</div>
-			<footer id="footer">
-				<nav id="footer-navbar">
-					<ul id="footer-nav-links" class="nav-links">
-						<div id="footer-link-block">
-						<li><a href="#home"><i class="fa-solid fa-house"></i></a></li>
-						<li><a href="#gallery"><i class="fa-solid fa-magnifying-glass"></i></a></li>
-						<li><a href="#post"><i class="fa-regular fa-square-plus"></i></a></li>
-						<li><a href="#profil"><i class="fa-solid fa-user"></i></a></li>
-						<li><a href="#login"><i id="footerLogoutButton" class="fa-solid fa-right-to-bracket"></i></a></li>
-						</div>
-					</ul>
-				</nav>
-			</footer>
 		</div>`;
 
 	const app = document.getElementById('app');
 	console.log("home :", app);
 	app.style.alignItems = "center";
-	const footer = document.getElementById('footer');
-	console.log(footer)
 	const postsContainer = document.getElementById('posts');
 
 	for (const post of usersPosts.posts) {
@@ -65,15 +48,14 @@ export async function home(container, callback, scrollValue) {
 		postElement.innerHTML = `
 			<div id="post">
 				<img src="${post.post_path}" alt="${post.description}"/>
-				<div id="post-description-section">
-					<div>
-						<p>${totalLikes} ${textLike}</p>
-					</div>
-					<div id="post-like-comment">
-						<p id="description"><strong>${usersList[post.user_id - 1].username}</strong>: ${post.description}</p>
+				<div id="post-infos">
+					<p id="like"><strong>${totalLikes}</strong> ${textLike}</p>
+					<p id="description"><strong>${usersList[post.user_id - 1].username}</strong>: ${post.description}</p>
+					<div id="post-icons">
 						<i id="post-like-icon" class="heart-icon fa-solid fa-heart"></i>
 						<i id="post-comment-icon" class="comment fa-regular fa-comment" comment-post-id="${post.id}"></i>
 					</div>
+				</div>
 			</div>`;
 
 		for (const like of post.likes) {
@@ -126,7 +108,6 @@ export async function home(container, callback, scrollValue) {
 					`;
 					postsContainer.appendChild(focusedElement);
 					app.style.overflow = "hidden";
-					footer.style.display = "None";
 
 					const sendLikeIcon = document.getElementById("focused-like-icon");
 					const exitButton = document.getElementById("exit-focus-icon");
@@ -152,7 +133,6 @@ export async function home(container, callback, scrollValue) {
 
 					exitButton.addEventListener('click', () => {
 						app.style.overflow = "auto";
-						footer.style.display = "Block";
 						focusedSection.remove();
 					})
 
@@ -215,28 +195,6 @@ export async function home(container, callback, scrollValue) {
 			console.error('Error:', error);
 		})
 	})
-
-	document.getElementById('footerLogoutButton').addEventListener('click', function(event) {
-		event.preventDefault();
-		fetch('http://localhost:8000/logout', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			credentials: 'include',
-		})
-		.then(response => response.json())
-		.then(data => {
-			console.log(data);
-			if (!data.error) {
-				window.location.href = '/#login';
-			}
-		})
-		.catch((error) => {
-			console.error('Error:', error);
-		})
-	})
-
 
 	if (callback && typeof callback === 'function') {
 		callback(scrollValue);

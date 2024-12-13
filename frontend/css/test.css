@@ -1,206 +1,378 @@
-/* === Imports === */
+/* [ Imports ] */
+
 @import url('https://fonts.googleapis.com/css2?family=Leckerli+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;900&display=swap');
 
-/* === Variables CSS === */
+/* [ Variables CSS ] */
+
 :root {
-    --primary-color: #ff0059;
-    --secondary-color: #f9f9f9;
-    --text-color: #333;
-    --hover-color: #ff0059;
-    --font-family-primary: "Leckerli One", cursive;
-    --font-family-secondary: "Lato", sans-serif;
-    --box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
-                   rgba(0, 0, 0, 0.12) 0px -12px 30px,
-                   rgba(0, 0, 0, 0.12) 0px 4px 6px,
-                   rgba(0, 0, 0, 0.17) 0px 12px 13px,
-                   rgba(0, 0, 0, 0.09) 0px -3px 5px;
+	--primary-color: #ff0059;
+	--secondary-color: #f9f9f9;
+	--text-color: #333;
+	--hover-color: #ff0059;
+	--font-family-primary: "Leckerli One", cursive;
+	--font-family-secondary: "Lato", sans-serif;
+	--box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+					rgba(0, 0, 0, 0.12) 0px -12px 30px,
+					rgba(0, 0, 0, 0.12) 0px 4px 6px,
+					rgba(0, 0, 0, 0.17) 0px 12px 13px,
+					rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-/* === Global Reset === */
+/* [ Global Reset ] */
+
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
 html, body {
-    height: 100%;
-    width: 100%;
-    font-family: var(--font-family-secondary);
+	height: 100%;
+	width: 100%;
+	font-family: var(--font-family-secondary);
 }
 
 #app {
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
 }
 
-/* === Links === */
+/* [ Links ] */
+
 a {
-    text-decoration: none;
-    color: inherit;
+	color:initial;
+	text-decoration: none;
 }
 
 a:hover {
-    text-decoration: underline;
+	text-decoration: underline;
 }
 
-/* === Common Styles for Forms === */
+/* [ Common Style for Forms ] */
+
 .form-container {
-    background-color: var(--secondary-color);
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: var(--box-shadow);
-    max-width: 400px;
-    margin: auto;
-    width: 100%;
-}
-
-.form-container label {
-    display: block;
-    margin-bottom: 8px;
-    color: #555;
+	min-height: 300px;
+	max-height: 450px;
+	width: 300px;
+	padding: 20px;
+	border-radius: 8px;
+	box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+	rgba(0, 0, 0, 0.12) 0px -12px 30px,
+	rgba(0, 0, 0, 0.12) 0px 4px 6px,
+	rgba(0, 0, 0, 0.17) 0px 12px 13px,
+	rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 .form-container input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+	width: 100%;
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 20px;
+	border-radius: 4px;
+	border: 1px solid #ccc;
 }
 
 .form-container button {
-    background: linear-gradient(152deg, rgb(253, 29, 104) 25%, rgba(252, 176, 69, 1) 90%);
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    width: 100%;
-    transition: background 0.3s ease-in-out;
+	background: linear-gradient(152deg, rgb(253, 29, 104) 25%, rgba(252, 176, 69, 1) 90%);
+	padding: 10px 15px;
+	border: none;
+	color: white;
+	border-radius: 4px;
+	cursor: pointer;
+	width: 100%;
 }
 
 .form-container button:hover {
-    background: linear-gradient(152deg, rgb(253, 0, 84) 25%, rgb(244, 149, 17) 90%);
+	background: linear-gradient(152deg, rgb(253, 0, 84) 25%, rgb(244, 149, 17) 90%);
 }
 
-/* === Logo Styles === */
+.form-container span {
+	color: var(--primary-color);
+}
+
+.form-container p {
+	margin-top: 10px;
+	font-size: 13px;
+}
+
+.form-container a {
+	color: var(--primary-color);
+	font-weight: 700;
+}
+
+/* [ Logo Styles & Slogan ] */
+
 #logo, #nav-logo {
-    color: var(--text-color);
-    font-size: 50px;
-    font-family: var(--font-family-primary);
-    font-weight: 700;
-    text-align: center;
+	color: var(--text-color);
+	font-size: 50px;
+	font-family: var(--font-family-primary);
+	font-weight: 700;
+	text-align: center;
 }
 
-/* === Navbar === */
+#slogan {
+	padding: 20px 0;
+	font-size: 20px;
+	text-align: center;
+	font-family: "Lato", sans-serif;
+	font-weight: 900;
+	font-style: normal;
+	color: #242223;
+}
+
+/* [ Account confirmation ] */
+
+#accountConfirm {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+#accountConfirm i {
+	font-size: 50px;
+	color: rgb(76, 207, 122);
+	margin: 20px;
+}
+
+/* [ Reset & New Password ] */
+
+#resetPassword h1, #newPassword h1 {
+	margin: 50px 0;
+}
+
+#resetPassword input {
+	margin-top: 10px;
+}
+
+#newPassword p {
+	margin: 10px 0;
+}
+
+/* [ Navbar ] */
+
 #navbar {
-    top: 0;
-    left: 0;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    background-color: #ffffff;
-    z-index: 1000;
-    padding: 10px;
+	top: 0;
+	width: 100%;
+	padding-bottom: 10px;
+	display: flex;
+	align-items: center;
+	background-color: #ffffff;
+	position: absolute;
 }
 
-#nav-links {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    list-style: none;
+.nav-links {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	list-style: none;
 }
 
-#nav-links a {
-    color: rgb(0, 0, 0);
-    font-size: 1rem;
-    transition: color 0.3s ease;
+.nav-links a {
+	color: rgb(0, 0, 0);
+	font-size: 1rem;
+	transition: color 0.3s ease;
 }
 
-#nav-links a:hover {
-    color: var(--hover-color);
+.nav-links a:hover {
+	color: var(--hover-color);
 }
 
-/* === Footer === */
 footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: #ffffff;
-    padding: 10px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
+	height: 50px;
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	z-index: 1000;
+	background-color: white;
 }
 
-/* === Gallery Styles === */
-#gallery-posts {
-    width: 900px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    justify-content: center;
+#link-block, #footer-link-block {
+	width: 100%;
+	max-width: 400px;
+	display: flex;
+	justify-content: space-between;
 }
 
-#gallery-post {
-    width: 250px;
-    height: 250px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 25px;
-    overflow: hidden;
-    transition: transform 0.3s ease;
+#link-block {
+	display: none;
 }
 
-#gallery-post img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+#footer-link-block {
+	padding: 15px 10px;
+
 }
 
-#gallery-post:hover {
-    transform: scale(1.1);
+/* [ Home img ] */
+
+#home {
+	height: 100%;
+	width: 100%;
 }
 
-/* === Pagination Controls === */
-#pagination-controls {
-    width: 700px;
-    display: flex;
-    justify-content: space-between;
-    margin: 20px auto;
+/* [ Home Posts ] */
+
+#posts-container {
+	margin-top: 78px;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	/* overflow: auto; */
 }
 
-#pagination-controls p {
-    font-family: var(--font-family-secondary);
-    font-weight: 900;
-    color: #252525;
-    cursor: pointer;
-    transition: color 0.3s;
+.post {
+	width: 100%;
+	max-width: 430px;
 }
 
-#pagination-controls p:hover {
-    color: var(--hover-color);
+#post {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
 }
 
-/* === Media Queries === */
-@media (max-width: 768px) {
-    #nav-links {
-        flex-direction: column;
-    }
+#post img {
+	width: 100%;
+}
 
-    #gallery-posts {
-        width: 100%;
-        padding: 10px;
-    }
+#post-description-section {
+	width: 100%;
+	padding: 10px;
+}
 
-    #gallery-post {
-        width: 100%;
-        height: auto;
-    }
+#description {
+	margin: 10px 0;
+}
+
+#post-like-comment i {
+	font-size: 20px;
+	color: #a8a8a8;
+	cursor: pointer;
+	transition: ease-in-out 0.3s;
+}
+
+#post-like-icon:hover {
+	color: rgb(255, 89, 89);
+}
+
+#post-comment-icon {
+	margin-left: 20px;
+}
+
+#post-comment-icon:hover {
+	color: rgb(88, 174, 245);
+}
+
+/* [ Focused Posts ] */
+
+#focused-section {
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	height: 100%;
+	position: absolute;
+	/* background-color: #000000e4; */
+	background-color: white;
+	overflow: auto;
+}
+
+#exit-focus-icon {
+	top: 0;
+	right: 0;
+	margin: 20px;
+	position: absolute;
+	color: white;
+	font-size: 30px;
+}
+
+#focused-post {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+#focused-post-img img {
+	width: 100%;
+	max-width: 390px;
+
+}
+
+#focused-post-section {
+	background-color: rgb(255, 255, 255);
+	max-width: 390px;
+}
+
+#comment-display-section {
+	height: 150px;
+	padding: 10px;
+	overflow: auto;
+	background-color: red;
+}
+
+#react-section {
+	width: 100%;
+	padding: 10px;
+	bottom: 0;
+	position: absolute;
+	max-width: 430px;
+	border-top: 1px solid rgb(63, 63, 63);
+}
+
+#userComment {
+	padding: 5px 0;
+}
+
+#like-comment-section {
+	margin-top: 10px;
+	display: flex;
+}
+
+#like-comment-section i {
+	font-size: 20px;
+}
+
+#post-comment-form {
+	width: 90%;
+	padding-left: 5%;
+	display: flex;
+}
+
+#comment-input-form {
+	width: 100%;
+	border: none;
+	font-size: 15px;
+	background-color: rgb(255, 255, 255);
+}
+
+#comment-input-form:focus {
+	outline: none;
+}
+
+@media (min-height: 739px) {
+	#comment-display-section {
+		height: 290px;
+	}
+}
+
+@media (min-height: 843px) {
+	#comment-display-section {
+		height: 370px;
+	}
+}
+
+@media (min-height: 914px) {
+	#comment-display-section {
+		height: 410px;
+	}
 }
