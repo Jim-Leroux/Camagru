@@ -46,6 +46,18 @@ a:hover {
 	text-decoration: underline;
 }
 
+/* [ Icons ] */
+
+i {
+	font-size: 20px;
+	color: #b8b8b8c2;
+	cursor: pointer;
+}
+
+a i {
+	color: black;
+}
+
 /* [ App ] */
 
 #app {
@@ -224,6 +236,7 @@ a:hover {
 		"img"
 		"post-infos";
 
+	padding-bottom: 20px;
 	max-width: 400px;
 }
 
@@ -235,6 +248,8 @@ a:hover {
 #post #post-infos {
 	grid-area: post-infos;
 
+	border-bottom: 1px solid grey;
+
 	display: grid;
 	padding: 10px;
 	gap: 10px;
@@ -242,9 +257,6 @@ a:hover {
 
 #post #post-icons {
 	display: flex;
-	font-size: 20px;
-	cursor: pointer;
-	color: #b8b8b8c2;
 }
 
 #post #post-icons #post-like-icon {
@@ -262,4 +274,122 @@ a:hover {
 
 #post #post-icons #post-comment-icon:hover {
 	color: #517bf0;
+}
+
+/* [ Focused Section ] */
+
+#focused-section {
+	width: 100%;
+	min-height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: rgba(36, 36, 36, 0.925);
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+#exit-focus-icon {
+	top: 0;
+	right: 0;
+	padding: 10px;
+	color: white;
+	font-size: 40px;
+	cursor: pointer;
+	position: absolute;
+}
+
+#focused-post {
+	display: grid;
+	gap: 10px;
+
+	max-width: 400px;
+	background-color: white;
+}
+
+#focused-post-img img {
+	width: 100%;
+}
+
+#focused-post-section {
+	display: grid;
+	gap: 10px;
+
+	padding: 0 10px;
+}
+
+#comment-display-section {
+	display: grid;
+	gap: 10px;
+
+	display: flex;
+	flex-direction: column;
+	overflow-y: scroll;
+	max-height: 200px;
+}
+
+#react-section {
+	display: grid;
+	gap: 10px;
+
+	padding: 10px 0;
+	border-top: 1px solid #333;
+}
+
+#like-comment-section {
+	display: grid;
+	grid-template-columns: 10% 80% 10%;
+}
+
+#like-comment-section i {
+	padding-top: 1px;
+}
+
+#post-comment-form {
+	padding-top: 2px;
+}
+
+#post-comment-form textarea {
+	width: 95%;
+	height: 20px;
+	border: none;
+	padding-top: 2px;
+	overflow-y: scroll;
+}
+
+
+@media (min-width: 1023px) {
+	#focused-post {
+		grid-template-areas:
+			"img section";
+
+		min-width: 800px;
+		max-width: 800px;
+		gap: unset;
+	}
+
+	#focused-post-img img {
+		height: 100%;
+		width: 400px;
+	}
+
+	#focused-post-img {
+		width: 400px;
+		grid-area: img;
+	}
+
+	#focused-post-section {
+		width: 400px;
+		grid-area: section;
+	}
+
+	#comment-display-section {
+		padding-top: 10px;
+		max-height: 300px;
+		min-height: 300px;
+	}
+
 }

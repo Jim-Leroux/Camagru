@@ -61,7 +61,7 @@ export async function home(container, callback, scrollValue) {
 		for (const like of post.likes) {
 			if (like.user_id == document.cookie.split('=')[1]) {
 				postElement.innerHTML = postElement.innerHTML.replace("<i id=\"post-like-icon\" class=\"heart-icon fa-solid fa-heart\"></i>",
-					"<i id=\"post-like-icon\" class=\"heart-icon fa-solid fa-heart\" style=\"color: red\"></i>");
+					"<i id=\"post-like-icon\" class=\"heart-icon fa-solid fa-heart\" style=\"color: #f05151\"></i>");
 				break;
 			}
 		}
@@ -98,9 +98,9 @@ export async function home(container, callback, scrollValue) {
 									<i id="focused-like-icon" class="fa-solid fa-heart"></i>
 									<form id="post-comment-form" action="post-comment" method="POST">
 										<label for="comment-input-form"></label>
-										<input type="text" id="comment-input-form" name="comment-input-form" placeholder="Add a comment..." required>
-										<p id="send-comment"><strong>Post</strong></p>
+										<textarea type="text" id="comment-input-form" name="comment-input-form" placeholder="Add a comment..." required></textarea>
 									</form>
+									<p id="send-comment"><strong>Post</strong></p>
 								</div>
 							</div>
 						</div>
