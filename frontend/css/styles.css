@@ -1,155 +1,131 @@
+/* [ Imports ] */
+
 @import url('https://fonts.googleapis.com/css2?family=Leckerli+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;900&family=Leckerli+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;900&display=swap');
+
+/* [ Variables CSS ] */
+
+:root {
+	--primary-color: #ff0059;
+	--secondary-color: #f9f9f9;
+	--text-color: #333;
+	--hover-color: #ff0059;
+	--font-family-primary: "Leckerli One", cursive;
+	--font-family-secondary: "Lato", sans-serif;
+	--box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+					rgba(0, 0, 0, 0.12) 0px -12px 30px,
+					rgba(0, 0, 0, 0.12) 0px 4px 6px,
+					rgba(0, 0, 0, 0.17) 0px 12px 13px,
+					rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+/* [ Global Reset ] */
+
+* {
+	margin: 0;
+	padding: 0;
+}
 
 html, body {
-	height: 100%; /* Assure que le body prend toute la hauteur de la fenêtre */
+	height: 100%;
 	width: 100%;
-	margin: 0; /* Supprime les marges par défaut */
-
+	font-family: var(--font-family-secondary);
 }
 
 #app {
 	height: 100%;
 	width: 100%;
-	display: flex; /* Utilise Flexbox pour centrer */
-	justify-content: center; /* Centre horizontalement */
-	align-items: center; /* Centre verticalement */
+	display: flex;
+	justify-content: center;
 }
 
-#spa {
-	color: initial; /* Remplacez par la couleur souhaitée */
-	text-decoration: none; /* Supprime le soulignement */
+/* [ Links ] */
+
+a {
+	color:initial;
+	text-decoration: none;
 }
 
-#spa :visited {
-	color: initial; /* Couleur des liens déjà visités */
+a:hover {
+	text-decoration: underline;
 }
 
-#spa :active {
-	color: initial; /* Couleur des liens pendant le clic */
-}
+/* [ Common Style for Forms ] */
 
-/* Styles communs pour #register et #login */
-#register,
-#accountConfirm,
-#resetPassword,
-#newPassword,
-#login {
-	background-color: #f9f9f9; /* Couleur de fond */
-	padding: 20px;			/* Espacement intérieur */
-	border-radius: 8px;	  /* Coins arrondis */
+.form-container {
+	min-height: 300px;
+	max-height: 450px;
+	width: 300px;
+	padding: 20px;
+	border-radius: 8px;
 	box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
-				rgba(0, 0, 0, 0.12) 0px -12px 30px,
-				rgba(0, 0, 0, 0.12) 0px 4px 6px,
-				rgba(0, 0, 0, 0.17) 0px 12px 13px,
-				rgba(0, 0, 0, 0.09) 0px -3px 5px; /* Ombre autour */
-	max-width: 400px;		/* Largeur maximale */
-	margin: auto;			/* Centrer le conteneur */
-	width: 272px;
+	rgba(0, 0, 0, 0.12) 0px -12px 30px,
+	rgba(0, 0, 0, 0.12) 0px 4px 6px,
+	rgba(0, 0, 0, 0.17) 0px 12px 13px,
+	rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-#resetPassword{
-	width: fit-content;
-}
-
-#logo {
-	color: #333;			 /* Couleur du texte */
-	font-size: 50px; /* Taille minimale 1.5rem, maximum 3rem, et dynamique entre les deux */
-	margin: 25px !important;
-	text-align: center;	  /* Centre le texte */
-	font-family: "Leckerli One", cursive; /* Utiliser la police importée */
-	font-weight: 700;
-}
-
-#textPosition {
+.form-container input {
+	width: 100%;
+	padding: 10px;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+	margin-bottom: 20px;
+	border-radius: 4px;
+	border: 1px solid #ccc;
 }
 
-
-
-
-/* Styles communs pour les étiquettes */
-#register label,
-#resetPassword label,
-#newPassword label,
-#login label {
-	display: block;		  /* Chaque étiquette sur une nouvelle ligne */
-	margin-bottom: 8px;	 /* Marge inférieure */
-	color: #555;			 /* Couleur du texte */
-}
-
-/* Styles communs pour les inputs */
-#register input,
-#resetPassword input,
-#newPassword input,
-#login input {
-	width: 100%;			/* Prendre toute la largeur du conteneur */
-	padding: 10px;		  /* Espacement intérieur */
-	margin-bottom: 20px;	/* Marge inférieure */
-	border: 1px solid #ccc; /* Bordure */
-	border-radius: 4px;	 /* Coins arrondis */
-	box-sizing: border-box;  /* Inclure padding et border dans la largeur */
-}
-
-/* Styles communs pour les boutons */
-#register button,
-#resetPassword button,
-#newPassword button,
-#login button {
-	background: linear-gradient(152deg, rgb(253, 29, 104) 25%, rgba(252,176,69,1) 90%);
-	color: white;			   /* Couleur du texte du bouton */
-	padding: 10px 15px;		/* Espacement intérieur */
-	border: none;			  /* Pas de bordure */
-	border-radius: 4px;		/* Coins arrondis */
-	cursor: pointer;			/* Curseur pointeur */
+.form-container button {
+	background: linear-gradient(152deg, rgb(253, 29, 104) 25%, rgba(252, 176, 69, 1) 90%);
+	padding: 10px 15px;
+	border: none;
+	color: white;
+	border-radius: 4px;
+	cursor: pointer;
 	width: 100%;
 }
 
-#register button:hover,
-#resetPassword button:hover,
-#newPassword button:hover,
-#login button:hover {
+.form-container button:hover {
 	background: linear-gradient(152deg, rgb(253, 0, 84) 25%, rgb(244, 149, 17) 90%);
 }
 
-/* Styles pour les paragraphes */
-#register p,
-#accountConfirm p,
-#resetPassword p,
-#newPassword p,
-#login p {
-	text-align: left; /* Centre le texte du paragraphe */
-	font-size: 12px;
+.form-container span {
+	color: var(--primary-color);
+}
+
+.form-container p {
+	margin-top: 10px;
+	font-size: 13px;
+}
+
+.form-container a {
+	color: var(--primary-color);
+	font-weight: 700;
+}
+
+/* [ Logo Styles & Slogan ] */
+
+#logo, #nav-logo {
+	color: var(--text-color);
+	font-size: 50px;
+	font-family: var(--font-family-primary);
+	font-weight: 700;
+	text-align: center;
+}
+
+#slogan {
+	padding: 20px 0;
+	font-size: 20px;
+	text-align: center;
 	font-family: "Lato", sans-serif;
 	font-weight: 900;
 	font-style: normal;
+	color: #242223;
 }
 
-/* Styles pour les liens dans les paragraphes */
-#register p a,
-#accountConfirm p a,
-#resetPassword p a,
-#newPassword p a,
-#login p a {
-	font-family: "Lato", sans-serif; /* Police de caractères pour le lien */
-	font-weight: 900; /* Poids de la police pour le lien */
-	font-style: normal; /* Style normal pour le lien */
-	color: #ff0059; /* Couleur par défaut pour le lien, vous pouvez changer si nécessaire */
-	text-decoration: none; /* Supprime le soulignement du lien */
-}
-
-#register p a:hover,
-#accountConfirm p a:hover,
-#resetPassword p a:hover,
-#newPassword p a:hover,
-#login p a:hover {
-	text-decoration: underline; /* Ajoute un soulignement au survol */
-}
+/* [ Account confirmation ] */
 
 #accountConfirm {
-	margin: 50px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -162,218 +138,150 @@ html, body {
 	margin: 20px;
 }
 
-#slogan {
-	font-size: 20px;
-	text-align: center;
-	font-family: "Lato", sans-serif; /* Police de caractères pour le lien */
-	font-weight: 900; /* Poids de la police pour le lien */
-	font-style: normal; /* Style normal pour le lien */
-	color: #242223; /* Couleur par défaut pour le lien, vous pouvez changer si nécessaire */
+/* [ Reset & New Password ] */
+
+#resetPassword h1, #newPassword h1 {
+	margin: 50px 0;
 }
 
-span {
-	color:#ff0059
+#resetPassword input {
+	margin-top: 10px;
 }
 
-#trouble {
-	font-size: 17px !important;
+#newPassword p {
+	margin: 10px 0;
 }
 
-#home {
-	width: 100%;
-	height: 100%;
-}
+/* [ Navbar ] */
 
-#nav-logo {
-	color: #333;			 /* Couleur du texte */
-	font-size: 30px; /* Taille minimale 1.5rem, maximum 3rem, et dynamique entre les deux */
-	text-align: center;	  /* Centre le texte */
-	font-family: "Leckerli One", cursive; /* Utiliser la police importée */
-	font-weight: 700;
-	margin: 0;
-	padding: 0;
-}
-
-/* Positionne la navbar en haut de la page */
 #navbar {
 	top: 0;
-	left: 0;
 	width: 100%;
+	padding-bottom: 10px;
 	display: flex;
 	align-items: center;
-	background-color: #ffffff; /* Couleur de fond de la navbar */
-	color: white;
-	z-index: 1000;
+	background-color: #ffffff;
+	position: absolute;
 }
 
-/* Style pour les liens */
-#nav-links,
-#footer-nav-links {
+.nav-links {
+	height: 100%;
 	width: 100%;
-	list-style: none;
 	display: flex;
-	align-items: center;
+	flex-direction: column;
 	justify-content: space-between;
-	margin: 0;
-	padding: 10px;
+	align-items: center;
+	list-style: none;
 }
 
-#nav-links li,
-#footer-nav-links li {
-	margin-left: 20px;
-	margin-right: 20px;
-}
-
-#nav-links a,
-#footer-nav-links a {
-	text-decoration: none;
+.nav-links a {
 	color: rgb(0, 0, 0);
 	font-size: 1rem;
 	transition: color 0.3s ease;
 }
 
-#nav-links a:hover,
-#footer-nav-links a:hover {
-	color: #ff0059;
-}
-
-#logo-block {
-	margin: 0;
-	padding: 0;
-}
-
-#link-block,
-#footer-link-block {
-	display: flex;
-}
-
-#link-block,
-#footer-link-block i {
-	font-size: 20px;
+.nav-links a:hover {
+	color: var(--hover-color);
 }
 
 footer {
-	margin: 0;
-	padding: 0 !important;
-	position: fixed;
-	display: flex;
-	justify-content: center;
-	bottom: 0;
-	left: 0;
+	height: 50px;
 	width: 100%;
-	background-color: #f1f1f1;
-	padding: 10px;
-	text-align: center;
+	position: absolute;
+	bottom: 0;
+	z-index: 1000;
+	background-color: white;
 }
 
-#footer-navbar {
+#link-block, #footer-link-block {
+	width: 100%;
+	max-width: 400px;
+	display: flex;
+	justify-content: space-between;
+}
+
+#link-block {
 	display: none;
 }
 
-#posts-container {
-	display: flex;
-	justify-content: center;
-	align-items: flex-start;
-	height: calc(100vh - 160px);
-	overflow-y: auto;
-	margin: 0 auto;
-	padding: 10px;
-	background-color: #f9f9f9;
+#footer-link-block {
+	padding: 15px 10px;
+
 }
 
-#posts {
+/* [ Home img ] */
+
+#home {
+	height: 100%;
 	width: 100%;
-	max-width: 600px;
-	background-color: #3d3535;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-	border-radius: 8px;
-	overflow: hidden;
+}
+
+/* [ Home Posts ] */
+
+#posts-container {
+	margin-top: 78px;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	overflow: auto;
+}
+
+.post {
+	width: 100%;
+	max-width: 430px;
 }
 
 #post {
 	display: flex;
 	flex-direction: column;
+	justify-content: space-around;
 	align-items: center;
-	padding: 5px 0px;
-	background-color: rgb(181, 178, 178);
-	border-bottom: 1px;
-	border-color: #ba0d0d;
 }
 
 #post img {
-	width: 500px;
+	width: 100%;
 }
 
-#post p {
-	width: 500px;
+#post-description-section {
+	width: 100%;
+	padding: 10px;
 }
 
-#gallery-container {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+#description {
+	margin: 10px 0;
 }
 
-#gallery-posts {
-	width: 900px;
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-	flex-wrap: wrap;
-
-}
-
-#gallery-post {
-	width: 250px;
-	height: 250px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	border-radius: 25px;
-}
-
-#gallery-post img {
-	width: 225px;
-	transition: 0.3s;
-}
-
-#gallery-post img:hover {
-	width: 250px;
-}
-
-#pagination-controls {
-	width: 700px;
-	display: flex;
-	justify-content: space-between;
-}
-
-#pagination-controls p {
-	width: 50px;
-	font-family: "Lato", sans-serif;
-	font-weight: 900;
-	font-style: normal;
-	color: #252525;
-	transition: 0.3s;
-}
-
-#pagination-controls p:hover {
-	width: 50px;
-	color: #ff0059;
+#post-like-comment i {
+	font-size: 20px;
+	color: #a8a8a8;
 	cursor: pointer;
+	transition: ease-in-out 0.3s;
 }
+
+#post-like-icon:hover {
+	color: rgb(255, 89, 89);
+}
+
+#post-comment-icon {
+	margin-left: 20px;
+}
+
+#post-comment-icon:hover {
+	color: rgb(88, 174, 245);
+}
+
+/* [ Focused Posts ] */
 
 #focused-section {
 	top: 0;
 	right: 0;
 	bottom: 0;
 	left: 0;
+	height: 100%;
+	width: 100%;
 	position: absolute;
-	background-color: #000000e4;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	background-color: white;
 }
 
 #exit-focus-icon {
@@ -381,73 +289,58 @@ footer {
 	right: 0;
 	margin: 20px;
 	position: absolute;
-	color: white;
+	color: rgb(0, 0, 0);
 	font-size: 30px;
 }
 
-#exit-focus-icon:hover {
-	cursor: pointer;
-}
-
 #focused-post {
-	width: 900px;
-	height: 450px;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 }
 
-#focused-post-img {
-	width: 450px;
-	height: 450px;
-}
-
 #focused-post-img img {
-	width: 450px;
+	margin-top: 30px;
+	width: 190px
 }
 
 #focused-post-section {
-	width: 450px;
-	height: 450px;
 	background-color: rgb(255, 255, 255);
 }
 
 #comment-display-section {
-	height: 75%;
-	border-bottom: 1px solid rgb(59, 59, 59);
+	height: 10vh;
+	padding: 10px;
+	overflow: auto;
+	margin-top: 15px;
+	border-top: 1px solid rgb(63, 63, 63);
 }
 
 #react-section {
-	height: 25%;
-	display: flex;
-	flex-direction: column;
+	width: 100%;
+	padding: 10px;
+	bottom: 0;
+	max-width: 448px;
+	position: absolute;
 }
 
-#react-section p {
-	font-family: "Lato", sans-serif;
-	font-weight: 500;
-	margin-left: 10px;
+#userComment {
+	padding: 5px 0;
 }
 
 #like-comment-section {
+	margin-top: 10px;
 	display: flex;
-	align-items: center;
 }
 
-#post-like-icon {
-	padding: 0 20px;
+#like-comment-section i {
 	font-size: 20px;
-	color: #adadad;
-	transition: 0.3s;
-}
-
-#post-like-icon:hover {
-	color: red;
-	cursor: pointer;
 }
 
 #post-comment-form {
-	width: 80%;
+	width: 90%;
+	padding-left: 5%;
 	display: flex;
 }
 
@@ -455,55 +348,59 @@ footer {
 	width: 100%;
 	border: none;
 	font-size: 15px;
-	background-color: rgb(255, 255, 255);
 }
 
 #comment-input-form:focus {
 	outline: none;
 }
 
-#send-comment {
-	transition: 0.3s;
-}
+@media (min-height: 394px) { #comment-display-section { height: 20vh; } }
 
-#send-comment:hover {
-	cursor: pointer;
-	color: #ff0059;
-}
+@media (min-height: 450px) { #comment-display-section { height: 30vh; } }
 
-@media (max-width: 768px) {
-	#nav-logo { font-size: 50px; }
+@media (min-height: 500px) { #comment-display-section { height: 35vh; } }
 
-	#navbar { flex-direction: column; }
+@media (min-height: 600px) { #comment-display-section { height: 45vh; } }
 
-	#nav-links {
-		flex-direction: column;
-		width: auto;
-	}
+@media (min-height: 700px) { #comment-display-section { height: 53vh; } }
 
-	#link-block {
-		width: 100%;
-		display: none;
-		justify-content: space-evenly;
-	}
+@media (min-height: 800px) { #comment-display-section {	height: 58vh; } }
 
-	#footer-navbar {
+@media (min-height: 900px) { #comment-display-section { height: 60vh; } }
+
+@media (min-width: 767px) and (min-height: 500px) {
+	#focused-section {
 		display: flex;
-		width: 100%;
+		align-items: center;
+		justify-content: center;
+		background-color: #000000e4;
 	}
 
-	#footer-link-block {
-		width: 100%;
-		display: flex;
-		justify-content: space-evenly;
+	#exit-focus-icon {
+		color: rgb(255, 255, 255);
+	}
+	
+	#focused-post {
+		height: 384px;
+		flex-direction: row;
+		align-items: unset;
+		background-color: white;
 	}
 
-	#footer-link-block i { font-size: 20px; }
+	#focused-post-img img {
+		margin-top: unset;
+		width: 384px;
+	}
 
-	#gallery-posts { width: 320px; }
+	#comment-display-section {
+		height: 290px;
+		margin-top: unset;
+		border-top: unset;
+	}
 
-	#pagination-controls {
-		margin-bottom: 50px;
-		width: 270px;
+	#react-section {
+		width: 448px;
+		bottom: auto;
+		left: auto;
 	}
 }

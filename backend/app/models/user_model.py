@@ -5,14 +5,14 @@ class   UserModel:
 		self.db = DatabaseModel().db
 
 	def get_all_users(self):
-		cursor = self.db.cursor()
+		cursor = self.db.cursor(dictionary=True)
 		try:
-			cursor.execute("SELECT * FROM USERS")
+			cursor.execute("SELECT * FROM users")
 			users = cursor.fetchall()
 		finally:
 			cursor.close()
 		return users
-	
+
 	def get_user_by_token(self, token):
 		cursor = self.db.cursor()
 		try:
@@ -65,7 +65,7 @@ class   UserModel:
 		cursor = self.db.cursor()
 		fields = []
 		values = []
-		
+
 		if user.get("username") is not None:
 			fields.append("username = %s")
 			values.append(user["username"])
@@ -75,7 +75,7 @@ class   UserModel:
 		if user.get("password") is not None:
 			fields.append("password = %s")
 			values.append(user["password"])
-		
+
 		if not fields:
 			return False
 
@@ -88,7 +88,7 @@ class   UserModel:
 		finally:
 			cursor.close()
 		return True
-	
+
 	def update_password(self, user_id, password):
 		cursor = self.db.cursor()
 		if password is not None:
@@ -117,7 +117,7 @@ class   UserModel:
 		finally:
 			cursor.close()
 		return True
-	
+
 	def active_user(self, token):
 		cursor = self.db.cursor()
 		try:

@@ -15,12 +15,12 @@ export function resetPassword(container) {
 			window.location.href = '/#home';
 		} else {
 			console.log('Response:', data);
-			container.innerHTML = '<div id="resetPassword">' +
+			container.innerHTML = '<div id="resetPassword" class="form-container">' +
 				'<h1 id="logo">Camagru</h1>' +
 				'<form id="resetPasswordForm" action="login" method="POST">' +
 				'<div id="textPosition">' +
-                '<p id="trouble">Forgot your <span>password</span> ?</p>' +
-                '<p>enter your email to get your reset link</p>' +
+                '<p>Forgot your <strong><span>password</span></strong> ?</p>' +
+                '<p><strong><span>Enter</span></strong> your email to get your <strong><span>reset</span></strong> link</p>' +
 				'</div>' +
 				'<input id="email" type="email" name="email" placeholder="Email" required>' +
 				'<button type="submit">Send</button>' +
@@ -28,7 +28,9 @@ export function resetPassword(container) {
 				'</form>' +
 				'</div>';
 
-			reloadCSS();
+			const app = document.getElementById('app');
+			console.log("register :", app);
+			app.style.alignItems = "center";
 
 			document.getElementById('resetPasswordForm').addEventListener('submit', function(event) {
 				event.preventDefault();

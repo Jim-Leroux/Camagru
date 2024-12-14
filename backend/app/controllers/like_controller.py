@@ -35,8 +35,6 @@ class	likeCtrl:
 		like_model = LikeModel()
 		likes = like_model.get_one_like(post_data["post_id"])
 
-		print("COUCOU")
-
 		liked = False
 
 

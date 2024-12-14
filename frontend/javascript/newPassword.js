@@ -22,10 +22,10 @@ export function newPassword(container) {
 			window.location.href = '/#home';
 		} else {
 			console.log('Response:', data);
-			container.innerHTML = '<div id="newPassword">' +
+			container.innerHTML = '<div id="newPassword" class="form-container">' +
 				'<h1 id="logo">Camagru</h1>' +
 				'<form id="newPasswordForm" action="newPassword" method="POST">' +
-				'<p><span>Please</span> enter your new <span>password</span></p>' +
+				'<p><strong><span>Please</span></strong> enter your new <strong><span>password</span></strong></p>' +
 				'<input id="password" type="password" name="password" placeholder="New Password" required>' +
                 '<input id="confirm-password" type="password" name="confirm-password" placeholder="Confirm Password" required>' +
 				'<button type="submit">Send</button>' +
@@ -33,7 +33,9 @@ export function newPassword(container) {
 				'</form>' +
 				'</div>';
 
-			reloadCSS();
+			const app = document.getElementById('app');
+			console.log("register :", app);
+			app.style.alignItems = "center";
 
 			document.getElementById('newPasswordForm').addEventListener('submit', function(event) {
 				event.preventDefault();

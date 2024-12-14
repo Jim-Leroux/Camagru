@@ -1,8 +1,7 @@
 from app.controllers.user_controller import userCtrl
 from app.controllers.post_controller import get_all_posts
 from app.controllers.like_controller import likeCtrl
-from app.controllers.comment_controller import get_all_comments
-
+from app.controllers.comment_controller import commentCtrl
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from router import Router
 
@@ -18,6 +17,7 @@ router.post("/register", userCtrl.add_user)
 router.post("/resetPassword", userCtrl.resetPassword)
 router.post("/newPassword", userCtrl.newPassword)
 router.post("/sendLike", likeCtrl.sendLike)
+router.post("/sendComment", commentCtrl.add_comment)
 
 router.get("/users", userCtrl.list_users)
 router.get("/verify", userCtrl.verify_account)
@@ -25,7 +25,7 @@ router.get("/checkSession", userCtrl.check_session)
 
 router.get("/posts", get_all_posts)
 router.get("/likes", likeCtrl.get_all_likes)
-router.get("/comments", get_all_comments)
+router.get("/comments", commentCtrl.get_all_comments)
 
 
 class RequestHandler(BaseHTTPRequestHandler):
