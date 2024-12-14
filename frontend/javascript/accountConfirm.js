@@ -21,11 +21,14 @@ export function accountConfirm(container) {
 			console.log('Response here:', data);
 		} else {
 			console.log('Response:', data);
-			container.innerHTML = `<div id="accountConfirm" class="form-container">
-			<h1 id="logo">Camagru</h1>
-			<i class="fa-solid fa-circle-check"></i>
-			<p>Account succesfully confirmed ! </p>
-			<p><a href="#login">Log in</a></p>
+			container.innerHTML = `
+			<div class="main-form-container">
+				<div id="accountConfirm" class="form-container">
+					<h1 id="logo">Camagru</h1>
+					<i class="fa-solid fa-circle-check"></i>
+					<p>Account succesfully confirmed ! </p>
+					<p><a href="#login">Log in</a></p>
+				</div>
 			</div>`
 
 			const app = document.getElementById('app');

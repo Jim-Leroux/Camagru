@@ -15,18 +15,22 @@ export function resetPassword(container) {
 			window.location.href = '/#home';
 		} else {
 			console.log('Response:', data);
-			container.innerHTML = '<div id="resetPassword" class="form-container">' +
-				'<h1 id="logo">Camagru</h1>' +
-				'<form id="resetPasswordForm" action="login" method="POST">' +
-				'<div id="textPosition">' +
-                '<p>Forgot your <strong><span>password</span></strong> ?</p>' +
-                '<p><strong><span>Enter</span></strong> your email to get your <strong><span>reset</span></strong> link</p>' +
-				'</div>' +
-				'<input id="email" type="email" name="email" placeholder="Email" required>' +
-				'<button type="submit">Send</button>' +
-				'<p id="error-message" style="color: red; display: none;"></p>' +
-				'</form>' +
-				'</div>';
+			container.innerHTML = `
+			<div class="main-form-container">
+				<div id="resetPassword" class="form-container">
+					<h1 id="logo">Camagru</h1>
+					<form id="resetPasswordForm" action="login" method="POST">
+					<div id="textPosition">
+						<p>Forgot your <strong><span>password</span></strong> ?</p>
+						<p><strong><span>Enter</span></strong> your email to get your <strong><span>reset</span></strong> link</p>
+					</div>
+					<input id="email" type="email" name="email" placeholder="Email" required>
+					<button type="submit">Send</button>
+					<p id="error-message" style="color: red; display: none;"></p>
+					</form>
+				</div>
+			</div> `
+
 
 			const app = document.getElementById('app');
 			console.log("register :", app);

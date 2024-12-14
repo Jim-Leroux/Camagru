@@ -32,13 +32,6 @@ html, body {
 	font-family: var(--font-family-secondary);
 }
 
-#app {
-	height: 100%;
-	width: 100%;
-	display: flex;
-	justify-content: center;
-}
-
 /* [ Links ] */
 
 a {
@@ -50,80 +43,104 @@ a:hover {
 	text-decoration: underline;
 }
 
-/* [ Common Style for Forms ] */
+/* [ App ] */
 
-.form-container {
-	min-height: 300px;
-	max-height: 450px;
-	width: 300px;
-	padding: 20px;
-	border-radius: 8px;
-	box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
-	rgba(0, 0, 0, 0.12) 0px -12px 30px,
-	rgba(0, 0, 0, 0.12) 0px 4px 6px,
-	rgba(0, 0, 0, 0.17) 0px 12px 13px,
-	rgba(0, 0, 0, 0.09) 0px -3px 5px;
+#app {
+	width: 100%;
+	height: 100%;
+	overflow-y: scroll;
 }
 
-.form-container input {
+/* [ Form Container ] */
+
+.main-form-container {
 	width: 100%;
-	padding: 10px;
+	min-height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.form-container {
+	padding: 20px;
+	max-width: 310px;
+	border-radius: 8px;
+	box-shadow: var(--box-shadow);
+
+	display: grid;
+	grid-template-areas:
+		"logo"
+		"slogan"
+		"form"
+		"options";
+	gap: 10px;
+}
+
+.form-container h1 {
+	grid-area: logo;
+
+	font-size: 50px;
+	text-align: center;
+	font-family: var(--font-family-primary);
+}
+
+.form-container h2 {
+	grid-area: slogan;
+
+	padding: 20px 0;
+	text-align: center;
+	font-family: var(--font-family-secondary);
+}
+
+.form-container h2 span {
+	color: var(--primary-color);
+}
+
+.form-container form {
+	grid-area: form;
+
 	display: flex;
 	flex-direction: column;
-	margin-bottom: 20px;
+	gap: 10px;
+}
+
+.form-container form input {
+	padding: 8px;
 	border-radius: 4px;
-	border: 1px solid #ccc;
+	border: 1px solid rgb(199, 199, 199);
 }
 
 .form-container button {
-	background: linear-gradient(152deg, rgb(253, 29, 104) 25%, rgba(252, 176, 69, 1) 90%);
-	padding: 10px 15px;
+	grid-area: button;
+
+	color: #f9f9f9;
+	padding: 10px;
 	border: none;
-	color: white;
-	border-radius: 4px;
 	cursor: pointer;
-	width: 100%;
+	border-radius: 4px;
+	background: linear-gradient(152deg, rgb(253, 29, 104) 25%, rgba(252, 176, 69, 1) 90%);
 }
 
-.form-container button:hover {
-	background: linear-gradient(152deg, rgb(253, 0, 84) 25%, rgb(244, 149, 17) 90%);
+.form-container div {
+	grid-area: options;
+
+	font-family: var(--font-family-secondary);
+	display: grid;
+	gap: 10px;
 }
 
-.form-container span {
+.form-container div a {
+	color: var(--primary-color);
+	font-weight: 600;
+}
+
+/* [ Reset Password Form ] */
+
+#resetPassword div span {
 	color: var(--primary-color);
 }
 
-.form-container p {
-	margin-top: 10px;
-	font-size: 13px;
-}
-
-.form-container a {
-	color: var(--primary-color);
-	font-weight: 700;
-}
-
-/* [ Logo Styles & Slogan ] */
-
-#logo, #nav-logo {
-	color: var(--text-color);
-	font-size: 50px;
-	font-family: var(--font-family-primary);
-	font-weight: 700;
-	text-align: center;
-}
-
-#slogan {
-	padding: 20px 0;
-	font-size: 20px;
-	text-align: center;
-	font-family: "Lato", sans-serif;
-	font-weight: 900;
-	font-style: normal;
-	color: #242223;
-}
-
-/* [ Account confirmation ] */
+/* [ Account Confirmation ] */
 
 #accountConfirm {
 	display: flex;
@@ -138,101 +155,51 @@ a:hover {
 	margin: 20px;
 }
 
-/* [ Reset & New Password ] */
-
-#resetPassword h1, #newPassword h1 {
-	margin: 50px 0;
+#accountConfirm a {
+	color: var(--primary-color);
+	font-weight: 600;
 }
 
-#resetPassword input {
-	margin-top: 10px;
-}
-
-#newPassword p {
-	margin: 10px 0;
-}
-
-/* [ Navbar ] */
-
-#navbar {
-	top: 0;
-	width: 100%;
-	padding-bottom: 10px;
-	display: flex;
-	align-items: center;
-	background-color: #ffffff;
-	position: absolute;
-}
-
-.nav-links {
-	height: 100%;
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	align-items: center;
-	list-style: none;
-}
-
-.nav-links a {
-	color: rgb(0, 0, 0);
-	font-size: 1rem;
-	transition: color 0.3s ease;
-}
-
-.nav-links a:hover {
-	color: var(--hover-color);
-}
-
-footer {
-	height: 50px;
-	width: 100%;
-	position: absolute;
-	bottom: 0;
-	z-index: 1000;
-	background-color: white;
-}
-
-#link-block, #footer-link-block {
-	width: 100%;
-	max-width: 400px;
-	display: flex;
-	justify-content: space-between;
-}
-
-#link-block {
-	display: none;
-}
-
-#footer-link-block {
-	padding: 15px 10px;
-
-}
-
-/* [ Home img ] */
+/* [ Home Page ] */
 
 #home {
 	height: 100%;
-	width: 100%;
+	display: grid;
+	grid-template-rows: 100px auto 50px;
+	grid-template-areas:
+		"logo"
+		"posts"
+		"nav";
 }
 
-/* [ Home Posts ] */
+#home #logo-block {
+	grid-area: logo;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 25px;
+	font-family: var(--font-family-primary);
+	/* border-bottom: 1px solid #333; */
+}
 
 #posts-container {
-	margin-top: 78px;
-	height: 100%;
+	grid-area: posts;
+
+	overflow-y: scroll;
+
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	overflow: auto;
 }
 
-.post {
-	width: 100%;
-	max-width: 430px;
+#home nav {
+	grid-area: nav;
+
 }
 
-#post {
+#home nav {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-around;
@@ -332,26 +299,35 @@ footer {
 #like-comment-section {
 	margin-top: 10px;
 	display: flex;
-}
-
-#like-comment-section i {
 	font-size: 20px;
+	max-width: 400px;
+	list-style: none;
+	align-items: center;
+	justify-content: space-between;
 }
 
-#post-comment-form {
-	width: 90%;
-	padding-left: 5%;
-	display: flex;
+#post {
+	display: grid;
+	grid-template-areas:
+		"img"
+		"post-infos";
+
+	max-width: 400px;
 }
 
-#comment-input-form {
+#post img {
+	grid-area: img;
 	width: 100%;
 	border: none;
 	font-size: 15px;
 }
 
-#comment-input-form:focus {
-	outline: none;
+#post #post-infos {
+	grid-area: post-infos;
+
+	display: grid;
+	padding: 10px;
+	gap: 10px;
 }
 
 @media (min-height: 394px) { #comment-display-section { height: 20vh; } }
@@ -379,7 +355,7 @@ footer {
 	#exit-focus-icon {
 		color: rgb(255, 255, 255);
 	}
-	
+
 	#focused-post {
 		height: 384px;
 		flex-direction: row;
