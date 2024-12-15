@@ -19,7 +19,7 @@ export async function home(container, callback, scrollValue) {
 			</div>
 			<nav id="navbar">
 				<ul id="nav-links" class="nav-links">
-					<li><a href="#home"><i class="fa-solid fa-house"></i></a></li>
+					<li><a href="#home"><i style="color: #ff0059" class="fa-solid fa-house"></i></a></li>
 					<li><a href="#gallery"><i class="fa-solid fa-magnifying-glass"></i></a></li>
 					<li><a href="#post"><i class="fa-regular fa-square-plus"></i></a></li>
 					<li><a href="#profil"><i class="fa-solid fa-user"></i></a></li>

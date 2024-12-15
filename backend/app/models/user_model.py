@@ -23,7 +23,7 @@ class   UserModel:
 		return user
 
 	def get_user_by_id(self, id):
-		cursor = self.db.cursor()
+		cursor = self.db.cursor(dictionary=True)
 		try:
 			cursor.execute("SELECT * FROM users WHERE id = %s", (id,))
 			user = cursor.fetchone()

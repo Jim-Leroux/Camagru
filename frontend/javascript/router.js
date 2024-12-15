@@ -4,6 +4,7 @@ import { resetPassword } from './resetPassword.js';
 import { newPassword } from './newPassword.js';
 import { register } from './register.js';
 import { gallery } from './gallery.js';
+import { profil } from './profil.js';
 import { login } from './login.js';
 import { home } from './home.js';
 
@@ -25,6 +26,8 @@ export function router() {
 		register(app);
 	} else if (route === '#login') {
 		login(app);
+	} else if (route === '#profil') {
+		profil(app);
 	} else if (route === '#resetPassword') {
 		resetPassword(app);
 	} else if (route === '#home') {

@@ -19,6 +19,7 @@ router.post("/newPassword", userCtrl.newPassword)
 router.post("/sendLike", likeCtrl.sendLike)
 router.post("/sendComment", commentCtrl.add_comment)
 
+router.get("/user", userCtrl.get_user)
 router.get("/users", userCtrl.list_users)
 router.get("/verify", userCtrl.verify_account)
 router.get("/checkSession", userCtrl.check_session)

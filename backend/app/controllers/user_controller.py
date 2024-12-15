@@ -56,7 +56,7 @@ class	userCtrl:
 			}))
 			return
 
-		if user and user[4] == 1:
+		if user and user['is_log'] == 1:
 			utils.return_response(request, 200, json.dumps({
 				'logged': True,
 				'message': 'User already logged'
@@ -158,7 +158,7 @@ class	userCtrl:
 
 		user = user_model.get_user_by_id(user_id)
 
-		if user and user[4] == 1:
+		if user and user['is_log'] == 1:
 			user_model.user_logout(user_id)
 
 			cookie = http.cookies.SimpleCookie()
@@ -238,6 +238,44 @@ class	userCtrl:
 			utils.return_response(request, 200, json.dumps(users))
 		except Exception as error:
 			utils.return_response(request, 500, json.dumps(str(error)))
+		return
+
+	def get_user(request):
+		cookie_header = request.headers.get('Cookie')
+		cookies = http.cookies.SimpleCookie(cookie_header)
+
+		user_id = cookies.get('user_id').value if cookies.get('user_id') else None
+
+		if user_id is None:
+			utils.return_response(request, 402, json.dumps({
+				'logged': False,
+				'message': 'Unauthorized: No user_id cookie'
+			}))
+			return
+
+		user_model = UserModel()
+
+
+		try:
+			user = user_model.get_user_by_id(user_id)
+		except Exception as e:
+			utils.return_response(request, 500, json.dumps({
+				'logged': False,
+				'message': 'Internal Server Error'
+			}))
+			return
+
+		if user:
+			user['created_at'] = user['created_at'].strftime('%Y-%m-%d %H:%M:%S')
+			utils.return_response(request, 200, json.dumps({
+				'username': user['username'],
+				'email': user['email']
+			}))
+		else:
+			utils.return_response(request, 403, json.dumps({
+				'logged': False,
+				'message': 'Unauthorized'
+			}))
 		return
 
 

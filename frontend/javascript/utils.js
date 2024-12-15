@@ -52,6 +52,22 @@ export async function getAllUsers() {
 	}
 }
 
+export async function getUser() {
+	try {
+		const response = await fetch('http://localhost:8000/user', {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			credentials: 'include',
+		})
+		return response.json()
+	}
+	catch (error) {
+		console.log(error)
+	}
+}
+
 export async function sendLike(post_id) {
 	try {
 		const response = await fetch('http://localhost:8000/sendLike', {
