@@ -3,8 +3,10 @@ import { reloadCSS, checkSession, getAllPosts, sendLike, sendComment, getAllUser
 export async function home(container, callback, scrollValue) {
 	const userSession = await checkSession();
 
-	if (userSession.logged == false)
+	if (userSession.logged == false) {
 		window.location.href = '/#login';
+		return ;
+	}
 
 	const usersPosts = await getAllPosts();
 
@@ -25,7 +27,7 @@ export async function home(container, callback, scrollValue) {
 				</ul>
 			</nav>
 			<div id="posts-container">
-				<div id="posts" class="scrollable"></div>
+				<div id="posts"></div>
 			</div>
 		</div>`;
 

@@ -15,18 +15,16 @@ export async function gallery(container, callback) {
 
 	container.innerHTML =
 			`<div id="home">
+				<div id="logo-block">
+					<h1 id="nav-logo">Camagru</h1>
+				</div>
 				<nav id="navbar">
-					<ul id="nav-links">
-						<div id="logo-block">
-						<h1 id="nav-logo">Camagru</h1>
-						</div>
-							<div id="link-block">
-								<li><a href="#home"><i class="fa-solid fa-house"></i></a></li>
-								<li><a href="#gallery"><i class="fa-solid fa-magnifying-glass"></i></a></li>
-								<li><a href="#post"><i class="fa-regular fa-square-plus"></i></a></li>
-								<li><a href="#profil"><i class="fa-solid fa-user"></i></a></li>
-								<li><a href="#login"><i id="logoutButton" class="fa-solid fa-right-to-bracket"></i></a></li>
-							</div>
+					<ul id="nav-links" class="nav-links">
+						<li><a href="#home"><i class="fa-solid fa-house"></i></a></li>
+						<li><a href="#gallery"><i class="fa-solid fa-magnifying-glass"></i></a></li>
+						<li><a href="#post"><i class="fa-regular fa-square-plus"></i></a></li>
+						<li><a href="#profil"><i class="fa-solid fa-user"></i></a></li>
+						<li><a href="#login"><i id="logoutButton" class="fa-solid fa-right-to-bracket"></i></a></li>
 					</ul>
 				</nav>
 				<div id="gallery-container">
@@ -37,38 +35,17 @@ export async function gallery(container, callback) {
 						<p id="next-page">Next</p>
 					</div>
 				</div>
-				<footer>
-					<nav id="footer-navbar">
-						<ul id="footer-nav-links">
-							<div id="footer-link-block">
-							<li><a href="#home"><i class="fa-solid fa-house"></i></a></li>
-							<li><a href="#gallery"><i class="fa-solid fa-magnifying-glass"></i></a></li>
-							<li><a href="#post"><i class="fa-regular fa-square-plus"></i></a></li>
-							<li><a href="#profil"><i class="fa-solid fa-user"></i></a></li>
-							<li><a href="#login"><i id="footerLogoutButton" class="fa-solid fa-right-to-bracket"></i></a></li>
-							</div>
-						</ul>
-					</nav>
-				</footer>
 			</div>`
 
 	if (userSession.logged == false) {
-		const navElement = document.getElementById('link-block');
+		const navElement = document.getElementById('nav-links');
 		navElement.innerHTML = `
-		<li><a href="#login"><i class="fa-solid fa-house"></i></a></li>
-		<li><a href="#gallery"><i class="fa-solid fa-magnifying-glass"></i></a></li>
-		<li><a href="#login"><i class="fa-regular fa-square-plus"></i></a></li>
-		<li><a href="#login"><i class="fa-solid fa-user"></i></a></li>
-		<li><a href="#login"><i class="fa-solid fa-right-to-bracket"></i></a></li>
-		`
-		const footerNavElement = document.getElementById('footer-link-block');
-		footerNavElement.innerHTML = `
-		<li><a href="#login"><i class="fa-solid fa-house"></i></a></li>
-		<li><a href="#gallery"><i class="fa-solid fa-magnifying-glass"></i></a></li>
-		<li><a href="#login"><i class="fa-regular fa-square-plus"></i></a></li>
-		<li><a href="#login"><i class="fa-solid fa-user"></i></a></li>
-		<li><a href="#login"><i class="fa-solid fa-right-to-bracket"></i></a></li>
-		`
+			<li><a href="#login"><i class="fa-solid fa-house"></i></a></li>
+			<li><a href="#gallery"><i class="fa-solid fa-magnifying-glass"></i></a></li>
+			<li><a href="#login"><i class="fa-regular fa-square-plus"></i></a></li>
+			<li><a href="#login"><i class="fa-solid fa-user"></i></a></li>
+			<li><a href="#login"><i class="fa-solid fa-right-to-bracket"></i></a></li>
+			`
 	}
 
 	const homeContainer = document.getElementById('home');
@@ -87,9 +64,7 @@ export async function gallery(container, callback) {
 			const postElement = document.createElement('div');
 			postElement.className = 'post';
 			postElement.innerHTML = `
-			<div id="gallery-post">
-				<img id ="imgsrc" src="${post.post_path}" alt="${post.description}" />
-			</div>`;
+				<img id ="imgsrc" src="${post.post_path}" alt="${post.description}" />`;
 			postsContainer.appendChild(postElement);
 		});
 
@@ -122,9 +97,9 @@ export async function gallery(container, callback) {
 									<i id="post-like-icon" class="fa-solid fa-heart"></i>
 									<form id="post-comment-form" action="post-comment" method="POST">
 										<label for="comment-input-form"></label>
-										<input type="text" id="comment-input-form" name="comment-input-form" placeholder="Add a comment..." required>
-										<p id="send-comment"><strong>Post</strong></p>
+										<textarea type="text" id="comment-input-form" name="comment-input-form" placeholder="Add a comment..." required></textarea>
 									</form>
+									<p id="send-comment"><strong>Post</strong></p>
 								</div>
 							</div>
 						</div>
@@ -226,27 +201,7 @@ export async function gallery(container, callback) {
 			console.log(data);
 			if (!data.error) {
 				window.location.href = '/#login';
-			}
-		})
-		.catch((error) => {
-			console.error('Error:', error);
-		})
-	})
-
-	document.getElementById('footerLogoutButton').addEventListener('click', function(event) {
-		event.preventDefault();
-		fetch('http://localhost:8000/logout', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			credentials: 'include',
-		})
-		.then(response => response.json())
-		.then(data => {
-			console.log(data);
-			if (!data.error) {
-				window.location.href = '/#login';
+				return ;
 			}
 		})
 		.catch((error) => {
