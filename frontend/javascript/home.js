@@ -10,7 +10,11 @@ export async function home(container, callback, scrollValue) {
 
 	const usersPosts = await getAllPosts();
 
+	console.log(usersPosts);
+
 	const usersList = await getAllUsers();
+
+	console.log(usersList);
 
 	container.innerHTML =
 		`<div id="home">

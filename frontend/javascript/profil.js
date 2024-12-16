@@ -27,25 +27,27 @@ export async function profil(container) {
 				</ul>
 			</nav>
 			<div id="user-container">
-				<div class="user-infos">
+				<div id="user-infos" class="user-infos">
 					<div class="user-icon">
 						<i style="color: #ff0059" class="fa-solid fa-user"></i>
 					</div>
 					<div class="stats">
-						<p><strong>120</strong> Likes</p>
-						<p><strong>10</strong> Posts</p>
-						<p><strong>42</strong> Comments</p>
+						<p><strong>120</strong><br> Likes</p>
+						<p><strong>10</strong><br> Posts</p>
+						<p><strong>42</strong><br> Comments</p>
 					</div>
-					<button id="edit-profile-button">Edit profile</button>
+					<p id="edit-profile-button"><strong>Edit profile</strong></p>
 				</div>
 
-				<div class="edit-profile-container">
-					<form id="edit-profile-form" action="submit" method="PUT">
-						<input id="username" type="text" name="username" placeholder="Name" required>
-						<input id="email" type="email" name="email" placeholder="Email" required>
-						<input id="password" type="password" name="password" placeholder="Password" required>
-					</form>
-					<button type="submit">Submit</button>
+				<div id="edit-profile-container" class="edit-profile-container">
+					<p><strong>My infos</strong></p>
+						<form id="edit-profile-form" action="submit" method="PUT">
+							<input id="username" type="text" name="username" placeholder="Name" required>
+							<input id="email" type="email" name="email" placeholder="Email" required>
+							<input id="password" type="password" name="password" placeholder="Password" required>
+							<button type="submit">Submit</button>
+						</form>
+					<i id="exit-edit" class="exit-edit fa-regular fa-circle-xmark"></i>
 				</div>
 			</div>
 		</div>`;
@@ -54,18 +56,21 @@ export async function profil(container) {
 	console.log("user :", app);
 	app.style.alignItems = "center";
 
-	const userContainer = document.getElementsByClassName('user-infos');
 	const editProfileButton = document.getElementById('edit-profile-button');
-	const editProfileContainer = document.getElementsByClassName('edit-profile-container');
+	const editProfileContainer = document.getElementById('edit-profile-container');
 
 	editProfileButton.addEventListener('click', function(event) {
 		event.preventDefault();
 
-		console.log(userContainer);
-		console.log(editProfileContainer);
-
-		userContainer.style.display = "none";
+		editProfileButton.style.color = "#ff0059";
 		editProfileContainer.style.display = "flex";
+	})
+
+	document.getElementById("exit-edit").addEventListener('click', function(event) {
+		event.preventDefault();
+
+		editProfileButton.style.color = "unset";
+		editProfileContainer.style.display = "none";
 	})
 
 	document.getElementById('logoutButton').addEventListener('click', function(event) {

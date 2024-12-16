@@ -10,11 +10,11 @@ export async function gallery(container, callback) {
 
 	const posts = usersPosts.posts;
 
-	const postsPerPage = 9;
+	const postsPerPage = 12;
 	let currentPage = 1;
 
 	container.innerHTML =
-			`<div id="home">
+			`<div id="gallery">
 				<div id="logo-block">
 					<h1 id="nav-logo">Camagru</h1>
 				</div>
@@ -30,10 +30,10 @@ export async function gallery(container, callback) {
 				<div id="gallery-container">
 					<div id="gallery-posts">
 					</div>
-					<div id="pagination-controls">
+				</div>
+				<div id="pagination-controls">
 						<p id="prev-page" disabled>Back</p>
 						<p id="next-page">Next</p>
-					</div>
 				</div>
 			</div>`
 
@@ -48,7 +48,7 @@ export async function gallery(container, callback) {
 			`
 	}
 
-	const homeContainer = document.getElementById('home');
+	const homeContainer = document.getElementById('gallery');
 	const galleryContainer = document.getElementById('gallery-container');
 	const postsContainer = document.getElementById('gallery-posts');
 	const prevButton = document.getElementById('prev-page');

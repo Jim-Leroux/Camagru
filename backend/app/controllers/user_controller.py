@@ -234,6 +234,7 @@ class	userCtrl:
 
 			for user in users:
 				user['created_at'] = user['created_at'].strftime('%Y-%m-%d %H:%M:%S')
+				user['password'] = None
 
 			utils.return_response(request, 200, json.dumps(users))
 		except Exception as error:
@@ -268,6 +269,7 @@ class	userCtrl:
 		if user:
 			user['created_at'] = user['created_at'].strftime('%Y-%m-%d %H:%M:%S')
 			utils.return_response(request, 200, json.dumps({
+				'id': user['id'],
 				'username': user['username'],
 				'email': user['email']
 			}))
