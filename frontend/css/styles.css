@@ -430,6 +430,8 @@ img {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	z-index: 1000;
+	background-color: white;
 }
 
 #gallery nav ul {
@@ -444,12 +446,15 @@ img {
 }
 
 #gallery-container {
-	grid-area: posts;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	overflow-y: scroll;
+	max-height: 100%;
+	max-width: 1000px;
+    grid-area: posts;
+    display: flex;
+    justify-content: center;
+    overflow-y: auto;
+    margin: auto;
 }
+
 
 #gallery-posts {
 	height: 100%;
@@ -469,11 +474,12 @@ img {
 	grid-area: pagin;
 
 	width: 100%;
-	max-width: 400px;
-	padding: 15px;
+	max-width: 1000px;
+	padding: 15px 10%;
 	display: flex;
 	justify-content: space-between;
 	justify-self: center;
+	background-color: white;
 }
 
 #pagination-controls p {
@@ -484,16 +490,6 @@ img {
 @media (min-width: 430px) {
 	#gallery-posts {
 		max-width: 90%;
-	}
-
-	#pagination-controls {
-		max-width: 600px;
-	}
-}
-
-@media (min-width: 1023px) {
-	#pagination-controls {
-		max-width: 600px;
 	}
 }
 
