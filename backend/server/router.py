@@ -6,7 +6,7 @@ import json
 
 class   Router:
 	def __init__(self):
-		self.routes = {"GET": {}, "POST": {}, "UPDATE": {}, "DELETE": {}}
+		self.routes = {"GET": {}, "POST": {}, "PUT": {}, "DELETE": {}}
 		#initialize key/value dictionnary of dictionnary
 
 	# +-------------------+
@@ -33,8 +33,8 @@ class   Router:
 	def post(self, path, handler):
 		self.routes["POST"][path] = handler
 
-	def update(self, path, handler):
-		self.routes["UPDATE"][path] = handler
+	def put(self, path, handler):
+		self.routes["PUT"][path] = handler
 
 	def delete(self, path, handler):
 		self.routes["DELETE"][path] = handler

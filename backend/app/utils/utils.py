@@ -2,6 +2,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from dotenv import load_dotenv
 
+import http.cookies
 import smtplib
 import json
 import re
@@ -77,6 +78,20 @@ class utils:
 
 		except Exception as e:
 			print(f"Erreur lors de l'envoi de l'email: {e}")
+
+	def get_user_id(request):
+		cookie_header = request.headers.get('Cookie')
+		cookies = http.cookies.SimpleCookie(cookie_header)
+
+		user_id = cookies.get('user_id').value if cookies.get('user_id') else None
+
+		if user_id is None:
+			utils.return_response(request, 402, json.dumps({
+				'logged': False,
+				'message': 'Unauthorized: No user_id cookie'
+			}))
+			return None
+		return user_id
 
 	def return_response(request, status_code, body, cookie=None):
 		request.send_response(status_code)

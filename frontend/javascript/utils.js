@@ -36,6 +36,22 @@ export async function getAllPosts() {
 	}
 }
 
+export async function getAllPostsOfUser() {
+	try {
+		const response = await fetch('http://localhost:8000/postsOfUser', {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			credentials: 'include',
+		})
+		return response.json()
+	}
+	catch (error) {
+		console.log(error)
+	}
+}
+
 export async function getAllUsers() {
 	try {
 		const response = await fetch('http://localhost:8000/users', {

@@ -63,31 +63,20 @@ class   UserModel:
 
 	def update_user(self, user):
 		cursor = self.db.cursor()
-		fields = []
-		values = []
-
-		if user.get("username") is not None:
-			fields.append("username = %s")
-			values.append(user["username"])
-		if user.get("email") is not None:
-			fields.append("email = %s")
-			values.append(user["email"])
-		if user.get("password") is not None:
-			fields.append("password = %s")
-			values.append(user["password"])
-
-		if not fields:
-			return False
-
-		values.append(user["id"])
-		query = f"UPDATE users SET {', '.join(fields)} WHERE id = %s"
-
 		try:
-			cursor.execute(query, tuple(values))
+			cursor.execute(
+				"""
+				UPDATE users
+				SET username = %s, email = %s, password = %s
+				WHERE id = %s
+				""",
+				(user["username"], user["email"], user["password"], user["id"])
+			)
 			self.db.commit()
 		finally:
 			cursor.close()
 		return True
+
 
 	def update_password(self, user_id, password):
 		cursor = self.db.cursor()
@@ -135,3 +124,15 @@ class   UserModel:
 		finally:
 			cursor.close()
 		return True
+
+	def toggle_notification(self, user_id, notify):
+		cursor = self.db.cursor()
+		try:
+			if notify == 1:
+				cursor.execute("UPDATE users SET notify = 0 WHERE id = %s", (user_id,))
+			else:
+				cursor.execute("UPDATE users SET notify = 1 WHERE id = %s", (user_id,))
+		finally:
+			cursor.close()
+		return True
+

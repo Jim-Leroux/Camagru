@@ -68,6 +68,19 @@ class	userCtrl:
 			}))
 		return
 
+	def get_user_id(request):
+		cookie_header = request.headers.get('Cookie')
+		cookies = http.cookies.SimpleCookie(cookie_header)
+
+		user_id = cookies.get('user_id').value if cookies.get('user_id') else None
+
+		if user_id is None:
+			utils.return_response(request, 402, json.dumps({
+				'logged': False,
+				'message': 'Unauthorized: No user_id cookie'
+			}))
+			return
+		return None
 
 	def add_user(request):
 		content_length = int(request.headers['Content-Length'])
@@ -271,7 +284,8 @@ class	userCtrl:
 			utils.return_response(request, 200, json.dumps({
 				'id': user['id'],
 				'username': user['username'],
-				'email': user['email']
+				'email': user['email'],
+				'notify': user['notify']
 			}))
 		else:
 			utils.return_response(request, 403, json.dumps({
@@ -279,6 +293,70 @@ class	userCtrl:
 				'message': 'Unauthorized'
 			}))
 		return
+
+	def toggle_notification(request):
+		try:
+			user_id = utils.get_user_id(request)
+
+			user_model = UserModel()
+
+			user = user_model.get_user_by_id(user_id)
+
+			user_model.toggle_notification(user_id, user['notify'])
+
+			utils.return_response(request, 200, json.dumps({'message': 'Toggled successfully'}))
+
+		except Exception as error:
+			print("ERROR: ", error)
+			utils.return_response(request, 500, json.dumps({'error': str(error)}))
+			return
+		return
+
+	def update_user(request):
+		content_length = int(request.headers['Content-Length'])
+
+
+
+		try:
+			post_data = json.loads(request.rfile.read(content_length))
+
+			user_id = utils.get_user_id(request)
+
+			user_model = UserModel()
+
+			user = user_model.get_user_by_id(user_id)
+
+			print("POST DATA :", post_data)
+
+			print("USER : ", user)
+
+			if post_data.get('username'):
+				user['username'] = post_data.get('username')
+
+			if post_data.get('email'):
+				if not utils.is_valid_email(post_data.get('email')):
+					utils.return_response(request, 400, json.dumps({"error": "Invalid email address"}))
+					return
+				else:
+					user['email'] = post_data.get('email')
+
+			if post_data.get('password'):
+				if not utils.is_valid_password(post_data.get('password')):
+					utils.return_response(request, 400, json.dumps({"error": "Password should contains at least 8 caracters, one uppercase and one special caracter"}))
+					return
+				else:
+					user['password'] = bcrypt.hashpw(post_data.get('password').encode('utf-8'), bcrypt.gensalt(10))
+
+			user_model.update_user(user)
+
+			utils.return_response(request, 200, json.dumps({'message': 'User succesfully updated'}))
+
+		except Exception as error:
+			print("ERROR: ", error)
+			utils.return_response(request, 500, json.dumps({'error': str(error)}))
+			return
+		return
+
 
 
 # PHP EQUIVALENT GET ID IN URL

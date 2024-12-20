@@ -504,7 +504,8 @@ img {
 
 #user-container {
 	display: grid;
-	grid-template-rows: 40% 60%;
+	grid-template-rows: 200px minmax(300px, auto);
+	overflow-y: scroll;
 }
 
 .user-infos, .edit-profile-container {
@@ -547,7 +548,6 @@ img {
 
 .user-infos p, .edit-profile-container button {
 	width: 100%;
-	max-width: 200px;
 	cursor: pointer;
 	transition: ease-in-out 0.3s;
 }
@@ -572,6 +572,12 @@ img {
 	padding: 8px;
 	border-radius: 4px;
 	border: 1px solid rgb(199, 199, 199);
+}
+
+#notifications-container {
+	padding: 5px;
+	display: flex;
+	justify-content: space-between;
 }
 
 .exit-edit {

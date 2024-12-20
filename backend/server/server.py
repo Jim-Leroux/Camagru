@@ -1,5 +1,5 @@
 from app.controllers.user_controller import userCtrl
-from app.controllers.post_controller import get_all_posts
+from app.controllers.post_controller import postCtrl
 from app.controllers.like_controller import likeCtrl
 from app.controllers.comment_controller import commentCtrl
 from http.server import HTTPServer, BaseHTTPRequestHandler
@@ -18,21 +18,25 @@ router.post("/resetPassword", userCtrl.resetPassword)
 router.post("/newPassword", userCtrl.newPassword)
 router.post("/sendLike", likeCtrl.sendLike)
 router.post("/sendComment", commentCtrl.add_comment)
+router.post("/toggleNotification", userCtrl.toggle_notification)
 
 router.get("/user", userCtrl.get_user)
 router.get("/users", userCtrl.list_users)
 router.get("/verify", userCtrl.verify_account)
 router.get("/checkSession", userCtrl.check_session)
 
-router.get("/posts", get_all_posts)
+router.get("/posts", postCtrl.get_all_posts)
+router.get("/postsOfUser", postCtrl.get_all_post_of_user)
 router.get("/likes", likeCtrl.get_all_likes)
 router.get("/comments", commentCtrl.get_all_comments)
+
+router.put("/updateUser", userCtrl.update_user)
 
 
 class RequestHandler(BaseHTTPRequestHandler):
 	def end_headers(self):
 		self.send_header('Access-Control-Allow-Origin', 'http://localhost:9000')
-		self.send_header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+		self.send_header('Access-Control-Allow-Methods', 'GET, POST, PUT, OPTIONS')
 		self.send_header('Access-Control-Allow-Headers', 'Authorization, Content-Type')
 		self.send_header('Access-Control-Allow-Credentials', 'true')
 		super().end_headers()
