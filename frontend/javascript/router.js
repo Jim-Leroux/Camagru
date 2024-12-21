@@ -6,6 +6,7 @@ import { register } from './register.js';
 import { gallery } from './gallery.js';
 import { profil } from './profil.js';
 import { login } from './login.js';
+import { post } from './post.js';
 import { home } from './home.js';
 
 export function router() {
@@ -30,6 +31,8 @@ export function router() {
 		profil(app);
 	} else if (route === '#resetPassword') {
 		resetPassword(app);
+	} else if (route === '#post') {
+		post(app);
 	} else if (route === '#home') {
 		home(app);
 	} else {

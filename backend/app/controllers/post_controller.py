@@ -3,10 +3,57 @@ from app.models.like_model import LikeModel
 from app.models.comment_model import CommentModel
 from app.utils.utils import utils
 
+from PIL import Image, ImageOps
+from datetime import datetime
+
 import http.cookies
+import base64
 import json
+import io
+import os
+
+PHOTOS_DIR = os.path.join(os.path.dirname(__file__), "../../assets")
 
 class postCtrl:
+	def createPost(request):
+		content_length = int(request.headers['Content-Length'])
+		try:
+			post_data = json.loads(request.rfile.read(content_length))
+
+			image_data = post_data.get("image")
+			overlay_path = post_data.get("overlay")
+
+			if not image_data or not overlay_path:
+				return {"error": "Image data or overlay missing"}, 400
+
+			# Decode the main image (base64)
+			image_bytes = base64.b64decode(image_data.split(",")[1])
+			image = Image.open(io.BytesIO(image_bytes)).convert("RGBA")
+
+			# Load the overlay image
+			overlay = Image.open(os.path.join(PHOTOS_DIR, overlay_path)).convert("RGBA")
+
+			# Resize the overlay image to match the main image size
+			overlay = overlay.resize(image.size, Image.Resampling.LANCZOS)
+
+			# Composite the two images
+			combined = Image.alpha_composite(image, overlay)
+
+			# Save the resulting image
+			output_dir = os.path.join(PHOTOS_DIR, "thumbnails")
+			os.makedirs(output_dir, exist_ok=True)
+			timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
+			output_path = os.path.join(output_dir, f"thumbnail_{timestamp}.png")
+			combined.save(output_path, "PNG")
+
+			utils.return_response(request, 200, json.dumps({'url': f"/assets/thumbnails/thumbnail_{timestamp}.png"}))
+			return
+
+		except Exception as e:
+			print(f"Error processing image: {e}")
+			return {"error": "Internal Server Error"}, 500
+
+
 	def get_all_posts(request):
 		try:
 			post_model = PostModel()

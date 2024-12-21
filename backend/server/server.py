@@ -14,6 +14,7 @@ PHOTOS_DIR = os.path.join(os.path.dirname(__file__), "../assets")
 router.post("/login", userCtrl.login)
 router.post("/logout", userCtrl.logout)
 router.post("/register", userCtrl.add_user)
+router.post("/upload", postCtrl.createPost)
 router.post("/resetPassword", userCtrl.resetPassword)
 router.post("/newPassword", userCtrl.newPassword)
 router.post("/sendLike", likeCtrl.sendLike)
@@ -61,6 +62,7 @@ class RequestHandler(BaseHTTPRequestHandler):
 	def do_GET(self):
 		if self.path.startswith("/assets/"):
 			photo_name = self.path[len("/assets/"):]
+			print("PHOTO_NAME :", photo_name)
 			self.serve_photo(photo_name)
 		else:
 			router.handle_request(self)
